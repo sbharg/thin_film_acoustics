@@ -1,6 +1,7 @@
 ## Additional
 .vscode
 .DS_Store
+runs/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
