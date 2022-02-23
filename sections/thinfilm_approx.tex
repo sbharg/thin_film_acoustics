@@ -1,5 +1,5 @@
 \subsection{Lubrication Approximation}
-As shown in \cite{kondic2003instabilities}, if the Reynold's number is low, the Navier-Stokes equations under the effect of gravity can be reduced to 
+As shown in \cite{kondic2003instabilities}, if the Reynold's number is sufficiently low, the Navier-Stokes equations under the effect of gravity can be reduced to 
 \begin{gather}
     \grad_2 p = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\alpha \vect{i} 
     \label{eq:pressure_grad}\\
@@ -8,7 +8,7 @@ As shown in \cite{kondic2003instabilities}, if the Reynold's number is low, the 
 \end{gather}
 where $\grad_2 = \lrp{\partial_x, \partial_y}$ and $\vect{v} = \lrp{u, v}$.
 
-The Laplace-Young boundary condition states that at the interface $z = \func{\phi}{x, y}$, the pressure is given by 
+The Laplace-Young boundary condition states that at the interface $z = \func{\phi}{x, y, t}$, the pressure is given by 
 $\func{p}{\phi} = -\gamma \kappa + p_0$, where $\kappa$ is the curvature of the boundary, $\gamma$ is the surface tension, and $p_0$ is the atmospheric pressure. 
 Thus, integrating \cref{eq:pressure_z} gives 
 \begin{align}
@@ -17,71 +17,37 @@ Thus, integrating \cref{eq:pressure_z} gives
     \func{p}{z} &= -\rho g \cos \alpha \lrp{z - \phi} -\gamma \kappa + p_0.  
     \label{eq:laplace_young}
 \end{align}
-When considering further conditions along the boundaries, it is helpful to break \cref{eq:pressure_grad} into its components
+Further boundary conditions include 
 \begin{gather}
-    \pderiv{p}{x} = \mu \pderivtwo{u}{z} + \rho g \sin\alpha 
-    \label{eq:pressure_x}\\
-    \pderiv{p}{y} = \mu \pderivtwo{v}{z}
-    \label{eq:pressure_y}
-\end{gather}
-and then apply the BCs
-\begin{gather}
-    \evalat{\vect{v}}{z = s\lrp{x,y}} = \vect{0}
+    \evalat{\vect{v}}{z = s\lrp{x,y}} = \vect{0} 
     \label{eq:bound_noslip}\\
-    \evalat[\Big]{\pderiv{u}{z}}{z = \phi\lrp{x,y}} = \evalat{\pderiv{v}{z}}{z = \phi\lrp{x,y}} = 0
+    \evalat[\Big]{\pderiv{\vect{v}}{z}}{z = \phi\lrp{x,y}} = \vect{0} 
     \label{eq:bound_stress}
 \end{gather}
 where \cref{eq:bound_noslip} is a no-slip BC along the surface $z = \func{s}{x,y}$ and \cref{eq:bound_stress}
-is a continuous stress BC along the fluid-air boundary $z = \func{\phi}{x,y}$. 
+is a continuous stress BC along the fluid-air boundary $z = \func{\phi}{x,y, t}$. 
 
-Integrating \cref{eq:pressure_x} twice with respect to $z$ and utilizing the BCs \cref{eq:bound_noslip} and \cref{eq:bound_stress} gives
+Integrating \cref{eq:pressure_grad} twice with respect to $z$ and utilizing the BCs  \cref{eq:bound_noslip} and \cref{eq:bound_stress} gives
 \begin{align}
-    \nonumber \int_{s}^{z}\int_{z}^{\phi} \pderivtwo{u}{z} \; dzdz &= \frac{1}{\mu}\int_{s}^{z}\int_{z}^{\phi} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \; dzdz \\
-    \nonumber \int_{s}^{z} \lrp{\evalat[\Big]{\pderiv{u}{z}}{z = \phi} - \pderiv{u}{z}} \; dz &= \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \int_{s}^{z}\lrp{\phi - z} \; dz\\
-    \nonumber \int_{s}^{z} \pderiv{u}{z} \; dz &= \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \int_{s}^{z} \lrp{z - \phi} \; dz\\
-    \nonumber u - \evalat{u}{z = s} &= \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha}  \lrp{\frac{z^2}{z} - \phi z} \Bigg|_{s}^z\\
-    u &= \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}. 
-    \label{eq:vel_u}
-\end{align}
-Similarly, integrating \cref{eq:pressure_y} twice with respect to $z$ and using \cref{eq:bound_noslip} and \cref{eq:bound_stress} gives
-\begin{align}
-    \nonumber \int_{s}^{z}\int_{z}^{\phi} \pderivtwo{v}{z} \; dzdz &= \frac{1}{\mu}\int_{s}^{z}\int_{z}^{\phi} \lrp{\pderiv{p}{y}} \; dzdz \\
-    \nonumber \int_{s}^{z} \lrp{\evalat[\Big]{\pderiv{v}{z}}{z = \phi} - \pderiv{u}{z}} \; dz &= \frac{1}{\mu} \lrp{\pderiv{p}{y}} \int_{s}^{z}\lrp{\phi - z} \; dz\\
-    \nonumber \int_{s}^{z} \pderiv{v}{z} \; dz &= \frac{1}{\mu} \lrp{\pderiv{p}{y}} \int_{s}^{z} \lrp{z - \phi} \; dz\\
-    \nonumber v - \evalat{v}{z = s} &= \frac{1}{\mu} \lrp{\pderiv{p}{y}}  \lrp{\frac{z^2}{z} - \phi z} \Bigg|_{s}^z\\
-    v &= \frac{1}{\mu} \lrp{\pderiv{p}{y}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}. 
-    \label{eq:vel_v}
+    \nonumber \int_{s}^{z}\int_{z}^{\phi} \pderivtwo{\vect{v}}{z} \; dzdz &= \frac{1}{\mu}\int_{s}^{z}\int_{z}^{\phi} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}} \; dzdz \\
+    \nonumber \int_{s}^{z} \lrp{\evalat[\Big]{\pderiv{\vect{v}}{z}}{z = \phi} - \pderiv{\vect{v}}{z}} \; dz &= \frac{1}{\mu} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}} \int_{s}^{z}\lrp{\phi - z} \; dz\\
+    \nonumber \int_{s}^{z} \pderiv{\vect{v}}{z} \; dz &= \frac{1}{\mu} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}} \int_{s}^{z} \lrp{z - \phi} \; dz\\
+    \nonumber \vect{v} - \evalat{\vect{v}}{z = s} &= \frac{1}{\mu} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}}  \lrp{\frac{z^2}{2} - \phi z} \Bigg|_{s}^z\\
+    \vect{v} &=\frac{1}{\mu} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}. 
+    \label{eq:vel_vectv}
 \end{align}
 Averaging over the height removes the $z$ dependence of $\vect{v} = \lrp{u, v}$ and gives the equation 
-\begin{equation*}
-    \bar{\vect{v}} = \frac{1}{h} \int_{s}^{\phi} \vect{v} \; dz
-\end{equation*}
-which decomposes into 
 \begin{align}
-    \bar{u} =  \frac{1}{h} \int_{s}^{\phi} u \; dz, \quad \bar{v} =  \frac{1}{h} \int_{s}^{\phi} v \; dz. 
-    \label{eq:uv_bar_ints}
+    \bar{\vect{v}} = \frac{1}{h} \int_{s}^{\phi} \vect{v} \; dz.
+    \label{eq:vectv_bar_int}
 \end{align}
-Solving the integrals in \cref{eq:uv_bar_ints} gives 
+Solving the integral in \cref{eq:vectv_bar_int} gives 
 \begin{align}
-    \nonumber \bar{u} &= \frac{1}{h} \int_{s}^{\phi} \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}  \; dz\\
-    \nonumber &= \frac{1}{\mu h} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \lrp{\frac{z^3}{6} - \frac{\phi z^2}{2} - z\lrp{\frac{s^2}{2} - \phi s}} \Bigg|_{s}^{\phi}\\
-    \nonumber &= \frac{1}{\mu h} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \lrp{-\frac{\phi^3}{3} + \phi^2s - \phi s^2 + \frac{s^3}{3}}\\
-    \nonumber &=  \frac{1}{\mu h} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \lrp{-\frac{(h+s)^3}{3} + (h+s)^2s - (h+s) s^2 + \frac{s^3}{3}}\\
-    &= -\frac{h^2}{3\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha}
-    \label{eq:u_bar}
-\end{align}
-and 
-\begin{align}
-    \nonumber \bar{v} &= \frac{1}{h} \int_{s}^{\phi} \frac{1}{\mu} \lrp{\pderiv{p}{y}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}  \; dz\\
-    \nonumber &= \frac{1}{\mu h} \lrp{\pderiv{p}{y}} \lrp{\frac{z^3}{6} - \frac{\phi z^2}{2} - z\lrp{\frac{s^2}{2} - \phi s}} \Bigg|_{s}^{\phi}\\
-    \nonumber &= \frac{1}{\mu h} \lrp{\pderiv{p}{y}} \lrp{-\frac{\phi^3}{3} + \phi^2s - \phi s^2 + \frac{s^3}{3}}\\
-    \nonumber &=  \frac{1}{\mu h} \lrp{\pderiv{p}{y}} \lrp{-\frac{(h+s)^3}{3} + (h+s)^2s - (h+s) s^2 + \frac{s^3}{3}}\\
-    &= -\frac{h^2}{3\mu} \lrp{\pderiv{p}{y}}. 
-    \label{eq:v_bar}
-\end{align}
-Hence the depth averaged velocity can be represented as 
-\begin{align}
-    \bar{\vect{v}} = \lrp{\bar{u}, \bar{v}} = -\frac{h^2}{3\mu} \lrp{\pderiv{p}{x} - \rho g \sin \alpha, \pderiv{p}{y}} = -\frac{h^2}{3\mu} \lrp{\grad_2 p - \rho g \sin \alpha \vect{i}}.
+    \nonumber \bar{\vect{v}} &= \frac{1}{h} \int_{s}^{\phi} \frac{1}{\mu} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}} -  \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}  \; dz\\
+    \nonumber &= \frac{1}{\mu h} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}} \lrp{\frac{z^3}{6} - \frac{\phi z^2}{2} - z\lrp{\frac{s^2}{2} - \phi s}} \Bigg|_{s}^{\phi}\\
+    \nonumber &= \frac{1}{\mu h} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}} \lrp{-\frac{\phi^3}{3} + \phi^2s - \phi s^2 + \frac{s^3}{3}}\\
+    \nonumber &=  \frac{1}{\mu h} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}} \lrp{-\frac{(h+s)^3}{3} + (h+s)^2s - (h+s) s^2 + \frac{s^3}{3}}\\
+    &= -\frac{h^2}{3\mu} \lrp{\grad_2 p - \rho g \sin\alpha\vect{i}}.
     \label{eq:uv_bar}
 \end{align}
 From the Laplace-Young BC \cref{eq:laplace_young}, we find that 
@@ -111,6 +77,7 @@ Approximating the curvature $\kappa \approx \grad^2 \phi$ then gives
     %&= \frac{1}{3\mu} \grad \cdot \lrb{\rho g \cos\alpha h^3\grad (h+s) - \gamma h^3\grad\grad^2(h+s) - h^3\rho g \sin \alpha \vect{i}}.
     &= \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \alpha h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi} - \rho h \sin\alpha \pderiv{h^3}{x} }.
     \label{eq:thin_film_dim}
+    %\nonumber &= \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \alpha h^3 \grad \lrp{h+s}} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\lrp{h+s}} - \rho h \sin\alpha \pderiv{h^3}{x} }.
 \end{align}
 
 \subsection{Dimensionless Form}
@@ -141,3 +108,25 @@ Hence, \cref{eq:thin_film_dimless_step2} becomes
     \label{eq:thin_film_dimless}
 \end{align}
 where $D = \lrp{3Ca}^{1/3}$. 
+
+
+\begin{comment}
+Integrating \cref{eq:pressure_x} twice with respect to $z$ and utilizing the BCs \cref{eq:bound_noslip} and \cref{eq:bound_stress} gives
+\begin{align}
+    \nonumber \int_{s}^{z}\int_{z}^{\phi} \pderivtwo{u}{z} \; dzdz &= \frac{1}{\mu}\int_{s}^{z}\int_{z}^{\phi} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \; dzdz \\
+    \nonumber \int_{s}^{z} \lrp{\evalat[\Big]{\pderiv{u}{z}}{z = \phi} - \pderiv{u}{z}} \; dz &= \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \int_{s}^{z}\lrp{\phi - z} \; dz\\
+    \nonumber \int_{s}^{z} \pderiv{u}{z} \; dz &= \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \int_{s}^{z} \lrp{z - \phi} \; dz\\
+    \nonumber u - \evalat{u}{z = s} &= \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha}  \lrp{\frac{z^2}{z} - \phi z} \Bigg|_{s}^z\\
+    u &= \frac{1}{\mu} \lrp{\pderiv{p}{x} - \rho g \sin\alpha} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}. 
+    \label{eq:vel_u}
+\end{align}
+Similarly, integrating \cref{eq:pressure_y} twice with respect to $z$ and using \cref{eq:bound_noslip} and \cref{eq:bound_stress} gives
+\begin{align}
+    \nonumber \int_{s}^{z}\int_{z}^{\phi} \pderivtwo{v}{z} \; dzdz &= \frac{1}{\mu}\int_{s}^{z}\int_{z}^{\phi} \lrp{\pderiv{p}{y}} \; dzdz \\
+    \nonumber \int_{s}^{z} \lrp{\evalat[\Big]{\pderiv{v}{z}}{z = \phi} - \pderiv{u}{z}} \; dz &= \frac{1}{\mu} \lrp{\pderiv{p}{y}} \int_{s}^{z}\lrp{\phi - z} \; dz\\
+    \nonumber \int_{s}^{z} \pderiv{v}{z} \; dz &= \frac{1}{\mu} \lrp{\pderiv{p}{y}} \int_{s}^{z} \lrp{z - \phi} \; dz\\
+    \nonumber v - \evalat{v}{z = s} &= \frac{1}{\mu} \lrp{\pderiv{p}{y}}  \lrp{\frac{z^2}{z} - \phi z} \Bigg|_{s}^z\\
+    v &= \frac{1}{\mu} \lrp{\pderiv{p}{y}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}. 
+    \label{eq:vel_v}
+\end{align}
+\end{comment}
