@@ -2,6 +2,7 @@
 .vscode
 .DS_Store
 runs/
+code/testing.ipynb
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
