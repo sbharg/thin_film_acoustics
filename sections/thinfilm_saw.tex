@@ -1,0 +1,202 @@
+
+\subsection{Lubrication Approximation}
+As shown in \cite{kondic2003instabilities}, if the Reynold's number is sufficiently low, the inertial terms of the Navier-Stokes equations 
+can be ignored. Thus, under the effects of gravity and SAW streaming forces the lubrication approximation gives
+\begin{gather}
+    \grad_2 p = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\theta \vect{i} - J\cexpz\vect{i}
+    \label{eq:pressure_grad}\\
+    \pderiv{p}{z} = -\rho g \cos\theta - J\alpha_1 \cexpz
+    \label{eq:pressure_z}
+\end{gather}
+where $J = \rho \lrp{1 + \alpha_1^2}A^2\omega^2k_i$,  $\grad_2 = \lrp{\partial_x, \partial_y}$, 
+and $\vect{v} = \lrp{u, v}$. 
+
+\subsection{Boundary Conditions}
+\subsubsection{Laplace-Young Boundary Condition}
+The Laplace-Young boundary condition states that at the interface $z = \func{\phi}{x, y, t}$, the pressure is given by 
+$\func{p}{\phi} = -\gamma \kappa + p_0$, where $\kappa$ is the curvature of the boundary, $\gamma$ is the surface tension, and $p_0$ is the atmospheric pressure. 
+Thus, integrating \cref{eq:pressure_z} gives 
+\begin{align}
+    \nonumber \int_{\phi}^{z} \pderiv{p}{z} \; dz &=  \int_{\phi}^{z} -\rho g \cos \theta - J\alpha_1 \cexpz \; dz\\
+    \nonumber \func{p}{z} - \func{p}{\phi} &= -\lrp{z - \phi} \rho g \cos \theta - \frac{J}{2k_i} \lrp{\cexpz - \cexpp}\\
+    \func{p}{z} &= -\lrp{z - \phi}\rho g \cos \theta - \frac{J}{2k_i} \lrp{\cexpz - \cexpp} -\gamma \kappa + p_0.  
+    \label{eq:laplace_young}
+\end{align}
+If we define 
+\begin{align}
+    \func{P}{x, y, t} = \phi \rho g \cos\theta + \frac{J}{2k_i} \cexpp - \gamma\kappa, 
+    \label{eq:cap_P}
+\end{align}
+this simplifies \cref{eq:laplace_young} to 
+\begin{align*}
+    \func{p}{z} = P - z\rho g \cos\theta - \frac{J}{2k_i}\cexpz + p_0
+\end{align*}
+which further gives 
+\begin{align}
+    \grad_2 p %= \grad_2 \lrp{P - z\rho g \cos\theta - \frac{J}{2k_i}\cexpz + p_0}
+    = \grad_2 \lrp{P - \frac{J}{2k_i}\cexpz}
+    = \grad P - J\cexpz \vect{i}
+    \label{eq:grad2_p_expanded}
+\end{align}
+
+\subsubsection{Further Boundary Conditions}
+Further boundary conditions include 
+\begin{gather}
+    \evalat{\vect{v}}{z = s\lrp{x,y}} = \vect{0} 
+    \label{eq:bound_noslip}\\
+    \evalat[\Big]{\pderiv{\vect{v}}{z}}{z = \phi\lrp{x,y,t}} = \vect{0} 
+    \label{eq:bound_stress}
+\end{gather}
+where \cref{eq:bound_noslip} is a no-slip BC along the surface $z = \func{s}{x,y}$ and \cref{eq:bound_stress}
+enforces vanishing shear stresses along the fluid-air boundary $z = \func{\phi}{x,y,t}$. 
+
+\subsection{Film Equation}
+\subsubsection{Velocity Vector Equation}
+Under the Laplace-Young BC and \cref{eq:grad2_p_expanded}, \cref{eq:pressure_grad} simplifies into 
+\begin{align}
+    \grad P = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\theta \vect{i}. 
+    \label{eq:pressure_grad_new}
+\end{align}
+Integrating \cref{eq:pressure_grad_new} twice with respect to $z$ and utilizing  
+\cref{eq:bound_noslip} and \cref{eq:bound_stress} gives
+\begin{align}
+    \nonumber \int_{s}^{z}\int_{z}^{\phi} \pderivtwo{\vect{v}}{z} \; dzdz &= \frac{1}{\mu}\int_{s}^{z}\int_{z}^{\phi} \lrp{\grad P - \rho g \sin\theta\vect{i}} \; dzdz \\
+    \nonumber \int_{s}^{z} \lrp{\evalat[\Big]{\pderiv{\vect{v}}{z}}{z = \phi} - \pderiv{\vect{v}}{z}} \; dz &= \frac{1}{\mu} \lrp{\grad P - \rho g \sin\theta\vect{i}} \int_{s}^{z}\lrp{\phi - z} \; dz\\
+    \nonumber \int_{s}^{z} \pderiv{\vect{v}}{z} \; dz &= \frac{1}{\mu} \lrp{\grad P - \rho g \sin\theta\vect{i}} \int_{s}^{z} \lrp{z - \phi} \; dz\\
+    \nonumber \vect{v} - \evalat{\vect{v}}{z = s} &= \frac{1}{\mu} \lrp{\grad P - \rho g \sin\theta\vect{i}}  \lrp{\frac{z^2}{2} - \phi z} \Bigg|_{s}^z\\
+    \vect{v} &=\frac{1}{\mu} \lrp{\grad P - \rho g \sin\theta\vect{i}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}. 
+    \label{eq:vel_vectv}
+\end{align}
+
+\subsubsection{Depth Averaged Velocity}
+Averaging over the height removes the $z$ dependence of $\vect{v} = \lrp{u, v}$ and gives the equation 
+\begin{align*}
+    \bar{\vect{v}} = \frac{1}{h} \int_{s}^{\phi} \vect{v} \; dz.
+    %\label{eq:vectv_bar_int}
+\end{align*}
+Solving this integral then gives 
+\begin{align}
+    \nonumber \bar{\vect{v}} &= \frac{1}{h} \int_{s}^{\phi} \frac{1}{\mu} \lrp{\grad P - \rho g \sin\theta\vect{i}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}  \; dz\\
+    \nonumber &= \frac{1}{\mu h} \lrp{\grad P - \rho g \sin\theta\vect{i}} \lrp{\frac{z^3}{6} - \frac{\phi z^2}{2} - z\lrp{\frac{s^2}{2} - \phi s}} \Bigg|_{s}^{\phi}\\
+    \nonumber &= \frac{1}{\mu h} \lrp{\grad P - \rho g \sin\theta\vect{i}} \lrp{-\frac{\phi^3}{3} + \phi^2s - \phi s^2 + \frac{s^3}{3}}\\
+    \nonumber &=  \frac{1}{\mu h} \lrp{\grad P - \rho g \sin\theta\vect{i}} \lrp{-\frac{(h+s)^3}{3} + (h+s)^2s - (h+s) s^2 + \frac{s^3}{3}}\\
+    &= -\frac{h^2}{3\mu} \lrp{\grad P - \rho g \sin\theta\vect{i}}.
+    \label{eq:uv_bar}
+\end{align}
+
+\subsubsection{Conservation of Mass}
+The conservation of mass, when depth-averaged, gives 
+\begin{align}
+    \pderiv{h}{t} + \grad \cdot \lrp{h\bar{\vect{v}}} = 0
+\end{align}
+which results in 
+\begin{align}
+    \nonumber \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\grad P - \rho g \sin \theta \vect{i}}}\\
+    &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\theta \grad \phi - \gamma\grad\kappa - \rho g \sin \theta \vect{i} + \frac{J}{2k_i}\grad \cexpp }}. 
+\end{align}
+Approximating the curvature $\kappa \approx \grad^2 \phi$ then gives 
+\begin{align}
+    \nonumber \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\theta \grad \phi - \gamma\grad\grad^2\phi - \rho g \sin \theta \vect{i} + \frac{J}{2k_i}\grad \cexpp}}\\
+    &= \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \theta h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi} - \rho g \sin\theta \pderiv{h^3}{x} + \grad \cdot \lrb{\frac{J}{2k_i}h^3\grad \cexpp}}.
+    \label{eq:thin_film_dim}
+\end{align}
+
+\subsection{Dimensionless Form}
+Scale the in-plane coordinates and time by 
+\begin{gather}
+    \bar{x} = \frac{x}{x_c}, \quad \bar{y} = \frac{y}{x_c}, \quad \bar{z} = \frac{z}{h_c}, \quad \bar{t} = \frac{t}{t_c}. 
+    \label{eq:coord_time_scales}
+\end{gather}
+where an overline denotes a non-dimensional quantity. From these scales, we get that  
+\begin{gather*}
+    k_i = \frac{\bar{k_i}}{x_c}, \quad \omega = \frac{\bar{\omega}}{t_c}, \quad A = \bar{A}h_c
+\end{gather*}
+and thus that 
+\begin{align}
+    J = \rho \lrp{1 + \alpha_1^2}  \bar{A}^2 h_c^2 \frac{\bar{\omega}^2 \bar{k_i}}{t_c^2 x_c} = \frac{\rho \eta h_c^2}{t_c^2 x_c}
+    \label{eq:J_nondim}
+\end{align}
+where $\eta = \lrp{1 + \alpha_1^2}  \bar{A}^2 \bar{\omega}^2 \bar{k_i}$ is non-dimensional. Substituting the scales in 
+\cref{eq:coord_time_scales} and \cref{eq:J_nondim} into \cref{eq:thin_film_dim} and removing any bars gives 
+\begin{multline}
+    \frac{h_c}{t_c} \pderiv{h}{t} = \frac{1}{3\mu} \lrb{
+        \frac{h_c^4}{x_c^2} \rho g \cos \theta \grad \cdot \lrb{h^3\grad\phi} - 
+        \frac{\gamma h_c^4}{x_c^4} \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
+        \frac{h_c^3}{x_c} \rho g \sin\theta \pderiv{h^3}{x}
+    }\\
+    + \frac{1}{3\mu} \lrb{ 
+        \frac{\eta \rho h_c^5}{2k_i t_c^2 x_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \phi \lrp{h_c/x_c}}}}
+    }.
+    \label{eq:nondim_first}
+\end{multline}
+By virtue of the fact that we are dealing with a thin film, $h_c \ll x_c$. Additionally, by definition
+$\alpha_1 = -i \alpha$ where 
+\begin{equation*}
+    \alpha = \lrp{1 - \lrp{V_r/V_w}^2}^{1/2}
+\end{equation*}
+with $V_r$ and $V_w$ being the velocity of the SAW in the solid substrate and fluid, respectively. Since 
+$V_r > V_w$
+\begin{equation*}
+    \alpha = i \lrp{\lrp{V_r/V_w}^2 - 1}^{1/2} \quad \rightarrow \quad \alpha_1 = \lrp{\lrp{V_r/V_w}^2 - 1}^{1/2}
+\end{equation*}
+which is real and $\bigo{1}$. Thus, we can ignore any component of the exponent 
+that is multiplied by $\alpha_1$ and $h_c / x_c$, which simplifies \cref{eq:nondim_first} to 
+\begin{align}
+    \nonumber \frac{h_c}{t_c} \pderiv{h}{t} &= \frac{1}{3\mu} \lrb{
+        \frac{h_c^4}{x_c^2} \rho g \cos \theta \grad \cdot \lrb{h^3\grad\phi} - 
+        \frac{\gamma h_c^4}{x_c^4} \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
+        \frac{h_c^3}{x_c} \rho g \sin\theta \pderiv{h^3}{x} + 
+        \frac{\eta h_c^5}{2k_i t_c^2 x_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}
+        %\frac{\eta h_c^5}{t_c^2 x_c^2} \pderiv{}{x} \lrb{h^3 \grad e^{2k_i x}}. 
+    }\\
+    \nonumber &= \frac{\gamma h_c^4}{3\mu x_c^4} \lrb{
+        \frac{x_c^2 \rho g}{\gamma} \cos \theta \grad \cdot \lrb{h^3\grad\phi} - 
+        \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
+        \frac{x_c^3}{\gamma h_c} \sin\theta \pderiv{h^3}{x} + 
+        \frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
+    }\\
+    \pderiv{h}{t} &= \frac{\gamma h_c^3}{3\mu x_c^4 t_c} \lrb{
+        \frac{x_c^2 \rho g}{\gamma} \cos \theta \grad \cdot \lrb{h^3\grad\phi} - 
+        \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
+        \frac{x_c^3}{\gamma h_c} \sin\theta \pderiv{h^3}{x} + 
+        \frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
+    }.
+    \label{eq:nondim_sec}
+\end{align}
+Choose $x_c$ and $t_c$ such that 
+\begin{align}
+    x_c = \lrp{\frac{\gamma h_c}{\rho g}}^{1/3}, \quad t_c = \frac{3\mu x_c}{h_c^2 \rho g}.
+    \label{eq:x_and_t_scales}
+\end{align}
+Substituting these scales into \cref{eq:nondim_sec} yields
+\begin{align}
+    \pderiv{h}{t} = \lrp{\frac{h_c^2 \rho g}{\gamma}}^{1/3} \cos\theta \grad \cdot \lrb{ h^3 \grad \phi } - 
+    \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
+    \sin\theta \pderiv{h^3}{x} + 
+    \frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}.
+    \label{eq:nondim_third}
+\end{align}  
+The velocity scale is chosen naturally as $U = x_c/t_c = h_c^2\rho g/3\mu$,
+which allows us to additionally define the capillary number $\mathrm{Ca} = \mu U / \gamma = h_c^2\rho g/3\gamma$
+and Weber number $\mathrm{We} = \rho U^2 h_c / \gamma = \rho x_c^2 h_c / \gamma t_c^2$, both of which
+are non-dimensional quantities. Hence, 
+\cref{eq:nondim_third} simplifies to 
+\begin{align}
+    \pderiv{h}{t} = \lrp{3\mathrm{Ca}}^{1/3} \cos\theta \grad \cdot \lrb{ h^3 \grad \phi } - 
+    \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
+    \sin\theta \pderiv{h^3}{x} + 
+    \eta \mathrm{We} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}.
+    \label{eq:nondim_fourth}
+\end{align}  
+If we further define 
+\begin{equation*}
+    D = \lrp{3\mathrm{Ca}}^{1/3}, \quad C = \eta \mathrm{We}
+\end{equation*}
+then we get a final equation 
+\begin{align}
+    \pderiv{h}{t} = D \cos\theta \grad \cdot \lrb{ h^3 \grad \phi } - 
+    \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
+    \sin\theta \pderiv{h^3}{x} + 
+    C \pderiv{}{x} \lrb{h^3 e^{2k_i x}}.
+    \label{eq:nondim_final}
+\end{align}  
