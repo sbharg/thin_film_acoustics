@@ -51,7 +51,7 @@ where \cref{eq:bound_noslip} is a no-slip BC along the surface $z = \func{s}{x,y
 enforces vanishing shear stresses along the fluid-air boundary $z = \func{\phi}{x,y,t}$. 
 
 \subsection{Film Equation}
-\subsubsection{Velocity Vector Equation}
+\subsubsection{Velocity Vector}
 Under the Laplace-Young BC and \cref{eq:grad2_p_expanded}, \cref{eq:pressure_grad} simplifies into 
 \begin{align}
     \grad P = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\beta \vect{i}. 
@@ -61,9 +61,9 @@ Integrating \cref{eq:pressure_grad_new} twice with respect to $z$ and utilizing
 \cref{eq:bound_noslip} and \cref{eq:bound_stress} gives
 \begin{align}
     \nonumber \int_{s}^{z}\int_{z}^{\phi} \pderivtwo{\vect{v}}{z} \; dzdz &= \frac{1}{\mu}\int_{s}^{z}\int_{z}^{\phi} \lrp{\grad P - \rho g \sin\beta\vect{i}} \; dzdz \\
-    \nonumber \int_{s}^{z} \lrp{\evalat[\Big]{\pderiv{\vect{v}}{z}}{z = \phi} - \pderiv{\vect{v}}{z}} \; dz &= \frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}} \int_{s}^{z}\lrp{\phi - z} \; dz\\
+    %\nonumber \int_{s}^{z} \lrp{\evalat[\Big]{\pderiv{\vect{v}}{z}}{z = \phi} - \pderiv{\vect{v}}{z}} \; dz &= \frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}} \int_{s}^{z}\lrp{\phi - z} \; dz\\
     \nonumber \int_{s}^{z} \pderiv{\vect{v}}{z} \; dz &= \frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}} \int_{s}^{z} \lrp{z - \phi} \; dz\\
-    \nonumber \vect{v} - \evalat{\vect{v}}{z = s} &= \frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}}  \lrp{\frac{z^2}{2} - \phi z} \Bigg|_{s}^z\\
+    %\nonumber \vect{v} - \evalat{\vect{v}}{z = s} &= \frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}}  \lrp{\frac{z^2}{2} - \phi z} \Bigg|_{s}^z\\
     \vect{v} &=\frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}. 
     \label{eq:vel_vectv}
 \end{align}
@@ -74,30 +74,35 @@ Averaging over the height removes the $z$ dependence of $\vect{v} = \lrp{u, v}$ 
     \bar{\vect{v}} = \frac{1}{h} \int_{s}^{\phi} \vect{v} \; dz.
     %\label{eq:vectv_bar_int}
 \end{align*}
-Solving this integral then gives 
+Plugging in \cref{eq:vel_vectv} and solving this integral then gives 
 \begin{align}
     \nonumber \bar{\vect{v}} &= \frac{1}{h} \int_{s}^{\phi} \frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}  \; dz\\
-    \nonumber &= \frac{1}{\mu h} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{\frac{z^3}{6} - \frac{\phi z^2}{2} - z\lrp{\frac{s^2}{2} - \phi s}} \Bigg|_{s}^{\phi}\\
+    %\nonumber &= \frac{1}{\mu h} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{\frac{z^3}{6} - \frac{\phi z^2}{2} - z\lrp{\frac{s^2}{2} - \phi s}} \Bigg|_{s}^{\phi}\\
     \nonumber &= \frac{1}{\mu h} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{-\frac{\phi^3}{3} + \phi^2s - \phi s^2 + \frac{s^3}{3}}\\
-    \nonumber &=  \frac{1}{\mu h} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{-\frac{(h+s)^3}{3} + (h+s)^2s - (h+s) s^2 + \frac{s^3}{3}}\\
+    %\nonumber &=  \frac{1}{\mu h} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{-\frac{(h+s)^3}{3} + (h+s)^2s - (h+s) s^2 + \frac{s^3}{3}}\\
     &= -\frac{h^2}{3\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}}.
     \label{eq:uv_bar}
 \end{align}
 
 \subsubsection{Conservation of Mass}
 The conservation of mass, when depth-averaged, gives 
-\begin{align}
+\begin{align*}
     \pderiv{h}{t} + \grad \cdot \lrp{h\bar{\vect{v}}} = 0
-\end{align}
+\end{align*}
 which results in 
 \begin{align}
-    \nonumber \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\grad P - \rho g \sin \beta \vect{i}}}\\
+    \begin{aligned}
+    \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\grad P - \rho g \sin \beta \vect{i}}}\\
     &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\beta \grad \phi - \gamma\grad\kappa - \rho g \sin \beta \vect{i} + \frac{J}{2k_i}\grad \cexpp }}. 
+    \end{aligned}
+    \label{eq:thin_film_nokappa}
 \end{align}
-Approximating the curvature $\kappa \approx \grad^2 \phi$ then gives 
+when plugging in \cref{eq:uv_bar}. Approximating the curvature $\kappa \approx \grad^2 \phi$ then gives 
 \begin{align}
-    \nonumber \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\beta \grad \phi - \gamma\grad\grad^2\phi - \rho g \sin \beta \vect{i} + \frac{J}{2k_i}\grad \cexpp}}\\
+    \begin{aligned}
+    \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\beta \grad \phi - \gamma\grad\grad^2\phi - \rho g \sin \beta \vect{i} + \frac{J}{2k_i}\grad \cexpp}}\\
     &= \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \beta h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi} - \rho g \sin\beta \pderiv{h^3}{x} + \grad \cdot \lrb{\frac{J}{2k_i}h^3\grad \cexpp}}.
+    \end{aligned}
     \label{eq:thin_film_dim}
 \end{align}
 
@@ -113,7 +118,7 @@ where an overline denotes a non-dimensional quantity. From these scales, we get 
 \end{gather*}
 and thus that 
 \begin{align}
-    J = \rho \lrp{1 + \alpha_1^2}  \bar{A}^2 h_c^2 \frac{\bar{\omega}^2 \bar{k_i}}{t_c^2 x_c} = \frac{\rho \eta h_c^2}{t_c^2 x_c}
+    J = \rho \lrp{1 + \alpha_1^2}  \bar{A}^2 h_c^2 \frac{\bar{\omega}^2 \bar{k_i}}{t_c^2 x_c} = \frac{\eta \rho h_c^2}{t_c^2 x_c}
     \label{eq:J_nondim}
 \end{align}
 where $\eta = \lrp{1 + \alpha_1^2}  \bar{A}^2 \bar{\omega}^2 \bar{k_i}$ is non-dimensional. Substituting the scales in 
@@ -153,13 +158,15 @@ that is multiplied by $\alpha_1$ and $h_c / x_c$, which simplifies \cref{eq:nond
         \frac{x_c^2 \rho g}{\gamma} \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
         \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
         \frac{x_c^3 \rho g}{\gamma h_c} \sin\beta \pderiv{h^3}{x} + 
-        \frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
+        %\frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
+        \frac{\eta \rho x_c^2 h_c}{2k_i \gamma t_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}
     }\\
     \pderiv{h}{t} &= \frac{\gamma h_c^3 t_c}{3\mu x_c^4} \lrb{
         \frac{x_c^2 \rho g}{\gamma} \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
         \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
         \frac{x_c^3 \rho g}{\gamma h_c} \sin\beta \pderiv{h^3}{x} + 
-        \frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
+        %\frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
+        \frac{\eta \rho x_c^2 h_c}{2k_i \gamma t_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}
     }.
     \label{eq:nondim_sec}
 \end{align}
@@ -173,7 +180,7 @@ Substituting these scales into \cref{eq:nondim_sec} yields
     \pderiv{h}{t} = \lrp{\frac{h_c^2 \rho g}{\gamma}}^{1/3} \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
     \sin\beta \pderiv{h^3}{x} + 
-    \frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}.
+    \frac{\eta \rho x_c^2 h_c}{2k_i \gamma t_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}
     \label{eq:nondim_third}
 \end{align}  
 The velocity scale is chosen naturally as $U = x_c/t_c = h_c^2\rho g/3\mu$,
@@ -185,12 +192,12 @@ are non-dimensional quantities. Hence,
     \pderiv{h}{t} = \lrp{3\mathrm{Ca}}^{1/3} \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
     \sin\beta \pderiv{h^3}{x} + 
-    \eta \mathrm{We} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}.
+    \frac{\eta \mathrm{We}}{2k_i} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}
     \label{eq:nondim_fourth}
 \end{align}  
 If we further define 
 \begin{equation*}
-    D = \lrp{3\mathrm{Ca}}^{1/3}, \quad C = \eta \mathrm{We}
+    D = \lrp{3\mathrm{Ca}}^{1/3}, \quad C = \frac{\eta \mathrm{We}}{2k_i}
 \end{equation*}
 then we get a final equation 
 \begin{align}
@@ -198,11 +205,11 @@ then we get a final equation
     \pderiv{h}{t} &= D \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
     \sin\beta \pderiv{h^3}{x} + 
-    C \pderiv{}{x} \lrb{h^3 e^{2k_i x}}\\
+    C \grad \cdot \lrb{h^3 \grad e^{2k_i x}}\\
     &= D \cos\beta \grad \cdot \lrb{ h^3 \grad \lrp{h+s} } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\lrp{h+s} } - 
     \sin\beta \pderiv{h^3}{x} + 
-    C \pderiv{}{x} \lrb{h^3 e^{2k_i x}}.
+    C \grad \cdot \lrb{h^3 \grad e^{2k_i x}}.
     \end{aligned}
     \label{eq:nondim_final}
 \end{align}  
