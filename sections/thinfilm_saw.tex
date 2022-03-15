@@ -3,12 +3,12 @@
 As shown in \cite{kondic2003instabilities}, if the Reynold's number is sufficiently low, the inertial terms of the Navier-Stokes equations 
 can be ignored. Thus, under the effects of gravity and SAW streaming forces (see \cite{shiokawa1994saw} for more information), the lubrication approximation gives
 \begin{gather}
-    \grad_2 p = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\beta \vect{i} - J\cexpz\vect{i}
+    \grad_2 p = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\beta \vect{i} - \rho J\cexpz\vect{i}
     \label{eq:pressure_grad}\\
-    \pderiv{p}{z} = -\rho g \cos\beta - J\alpha_1 \cexpz
+    \pderiv{p}{z} = -\rho g \cos\beta - \rho J\alpha_1 \cexpz
     \label{eq:pressure_z}
 \end{gather}
-where $J = \rho \lrp{1 + \alpha_1^2}A^2\omega^2k_i$,  $\grad_2 = \lrp{\partial_x, \partial_y}$, 
+where $J = \lrp{1 + \alpha_1^2}A^2\omega^2k_i$,  $\grad_2 = \lrp{\partial_x, \partial_y}$, 
 and $\vect{v} = \lrp{u, v}$. 
 
 \subsection{Boundary Conditions}
@@ -17,25 +17,25 @@ The Laplace-Young boundary condition states that at the interface $z = \func{\ph
 $\func{p}{\phi} = -\gamma \kappa + p_0$, where $\kappa$ is the curvature of the boundary, $\gamma$ is the surface tension, and $p_0$ is the atmospheric pressure. 
 Thus, integrating \cref{eq:pressure_z} gives 
 \begin{align}
-    \nonumber \int_{\phi}^{z} \pderiv{p}{z} \; dz &=  \int_{\phi}^{z} -\rho g \cos \beta - J\alpha_1 \cexpz \; dz\\
-    \nonumber \func{p}{z} - \func{p}{\phi} &= -\lrp{z - \phi} \rho g \cos \beta - \frac{J}{2k_i} \lrp{\cexpz - \cexpp}\\
-    \func{p}{z} &= -\lrp{z - \phi}\rho g \cos \beta - \frac{J}{2k_i} \lrp{\cexpz - \cexpp} -\gamma \kappa + p_0.  
+    \nonumber \int_{\phi}^{z} \pderiv{p}{z} \; dz &=  \int_{\phi}^{z} -\rho g \cos \beta - \rho J\alpha_1 \cexpz \; dz\\
+    \nonumber \func{p}{z} - \func{p}{\phi} &= -\lrp{z - \phi} \rho g \cos \beta - \frac{\rho J}{2k_i} \lrp{\cexpz - \cexpp}\\
+    \func{p}{z} &= -\lrp{z - \phi}\rho g \cos \beta - \frac{\rho J}{2k_i} \lrp{\cexpz - \cexpp} -\gamma \kappa + p_0.  
     \label{eq:laplace_young}
 \end{align}
 If we define 
 \begin{align}
-    \func{P}{x, y, t} = \phi \rho g \cos\beta + \frac{J}{2k_i} \cexpp - \gamma\kappa, 
+    \func{P}{x, y, t} = \phi \rho g \cos\beta + \frac{\rho J}{2k_i} \cexpp - \gamma\kappa, 
     \label{eq:cap_P}
 \end{align}
 this simplifies \cref{eq:laplace_young} to 
 \begin{align*}
-    \func{p}{z} = P - z\rho g \cos\beta - \frac{J}{2k_i}\cexpz + p_0
+    \func{p}{z} = P - z\rho g \cos\beta - \frac{\rho J}{2k_i}\cexpz + p_0
 \end{align*}
 which further gives 
 \begin{align}
     \grad_2 p %= \grad_2 \lrp{P - z\rho g \cos\beta - \frac{J}{2k_i}\cexpz + p_0}
-    = \grad_2 \lrp{P - \frac{J}{2k_i}\cexpz}
-    = \grad P - J\cexpz \vect{i}
+    = \grad_2 \lrp{P - \frac{\rho J}{2k_i}\cexpz}
+    = \grad P - \rho J\cexpz \vect{i}
     \label{eq:grad2_p_expanded}
 \end{align}
 
@@ -93,15 +93,15 @@ which results in
 \begin{align}
     \begin{aligned}
     \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\grad P - \rho g \sin \beta \vect{i}}}\\
-    &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\beta \grad \phi - \gamma\grad\kappa - \rho g \sin \beta \vect{i} + \frac{J}{2k_i}\grad \cexpp }}. 
+    &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\beta \grad \phi - \gamma\grad\kappa - \rho g \sin \beta \vect{i} + \frac{\rho J}{2k_i}\grad \cexpp }}. 
     \end{aligned}
     \label{eq:thin_film_nokappa}
 \end{align}
 when plugging in \cref{eq:uv_bar}. Approximating the curvature $\kappa \approx \grad^2 \phi$ then gives 
 \begin{align}
     \begin{aligned}
-    \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\beta \grad \phi - \gamma\grad\grad^2\phi - \rho g \sin \beta \vect{i} + \frac{J}{2k_i}\grad \cexpp}}\\
-    &= \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \beta h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi} - \rho g \sin\beta \pderiv{h^3}{x} + \grad \cdot \lrb{\frac{J}{2k_i}h^3\grad \cexpp}}.
+    \pderiv{h}{t} &= \frac{1}{3\mu} \grad \cdot \lrb{h^3 \lrp{\rho g \cos\beta \grad \phi - \gamma\grad\grad^2\phi - \rho g \sin \beta \vect{i} + \frac{\rho J}{2k_i}\grad \cexpp}}\\
+    &= \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \beta h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi} - \rho g \sin\beta \pderiv{h^3}{x} + \grad \cdot \lrb{\frac{\rho J}{2k_i}h^3\grad \cexpp}}.
     \end{aligned}
     \label{eq:thin_film_dim}
 \end{align}
@@ -118,7 +118,7 @@ where an overline denotes a non-dimensional quantity. From these scales, we get 
 \end{gather*}
 and thus that 
 \begin{align}
-    J = \rho \lrp{1 + \alpha_1^2}  \bar{A}^2 h_c^2 \frac{\bar{\omega}^2 \bar{k_i}}{t_c^2 x_c} = \frac{\eta \rho h_c^2}{t_c^2 x_c}
+    J = \lrp{1 + \alpha_1^2}  \bar{A}^2 h_c^2 \frac{\bar{\omega}^2 \bar{k_i}}{t_c^2 x_c} = \frac{\eta h_c^2}{t_c^2 x_c}
     \label{eq:J_nondim}
 \end{align}
 where $\eta = \lrp{1 + \alpha_1^2}  \bar{A}^2 \bar{\omega}^2 \bar{k_i}$ is non-dimensional. Substituting the scales in 
