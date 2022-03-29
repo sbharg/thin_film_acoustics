@@ -12,15 +12,11 @@
 \DeclareUnicodeCharacter{2212}{-}
 \RequirePackage{comment}
 \RequirePackage[page]{appendix}
-\RequirePackage{minitoc}
 
 \RequirePackage{amsmath}
 \RequirePackage[amsthm, hyperref, thmmarks]{ntheorem}
 \RequirePackage{amssymb}
 \RequirePackage{mathtools} 
-
-\RequirePackage[linkcolor=blue,citecolor=blue,colorlinks=true]{hyperref}
-\RequirePackage[nameinlink,capitalize]{cleveref}
  
 %\RequirePackage{algorithmicx}
 \RequirePackage{algorithm}
@@ -63,6 +59,10 @@ layers/standard/.define layer set={%
 \RequirePackage{xspace}
 
 \RequirePackage[margin=1in]{geometry}
+
+\RequirePackage{minitoc}
+\RequirePackage[linkcolor=blue,citecolor=blue,colorlinks=true]{hyperref}
+\RequirePackage[nameinlink,capitalize]{cleveref}
 
 \RequirePackage[
   backend      = biber,
@@ -131,5 +131,5 @@ layers/standard/.define layer set={%
 \newcommand{\Algin}{\Statex \textbf{Input:} }
 \newcommand{\Algout}{\Statex \textbf{Output:} }
 
-\newcommand{\cexpz}{\ensuremath{e^{2k_i \lrp{x + \alpha_1 z}}}}
-\newcommand{\cexpp}{\ensuremath{e^{2k_i \lrp{x + \alpha_1 \phi}}}}
+\newcommand{\cexpz}{\ensuremath{e^{2k_i \lrp{x - x_0 + \alpha_1 z}}}}
+\newcommand{\cexpp}{\ensuremath{e^{2k_i \lrp{x - x_0 + \alpha_1 \phi}}}}
