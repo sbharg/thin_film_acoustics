@@ -1,0 +1,20 @@
+\subsection{Spatial Discretization}
+If we define the domain of interest as $\lrb{0, L_x}$, we can discretize the 
+domain into points $x_j = j\Delta x$ for $j = 0, \ldots, N_x$ where 
+$\Delta x = L_x / N_x$ and $N_x$ is the number of grid points excluding the origin. 
+If we further define $\func{h_j}{t} = \func{h}{x_j, t}$, we can discretize 
+\cref{eq:two_dim_final} into a system of ordinary differential equations of the form 
+\begin{equation}
+    \deriv{h_j}{t} = f_j = D\cos \beta f_j^{(1)} - f_j^{(2)} - \sin \beta f_j^{(3)} + 2k_iC f_j^{(4)}, \quad j = 0, \ldots, N_x
+    \label{eq:ode_sys}
+\end{equation}
+where $f_j^{(k)}$ is the discretization of the $k$-th term in
+the right-hand side of \cref{eq:two_dim_final}. Because the governing equation 
+contains high order derivatives, the discretization used for certain components 
+needs special attention in order to not lead to a large computational stencil.
+
+\subsubsection{Fourth-Order Term}
+Discretizing the fourth order term (i.e. $f_j^{(2)}$) can be done by a combination
+of forward and backward differences. 
+
+\subsubsection{Lower Order Terms}

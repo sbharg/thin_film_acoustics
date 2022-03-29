@@ -165,6 +165,7 @@ acs-*.bib
 *.ind
 
 # minitoc
+*.mtc
 *.maf
 *.mlf
 *.mlt

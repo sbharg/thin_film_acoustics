@@ -4,6 +4,7 @@
 
 % Packages
 \RequirePackage[utf8]{inputenc}
+%\RequirePackage{lmodern}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{microtype}
 \RequirePackage[english]{babel}
@@ -11,6 +12,7 @@
 \DeclareUnicodeCharacter{2212}{-}
 \RequirePackage{comment}
 \RequirePackage[page]{appendix}
+\RequirePackage{minitoc}
 
 \RequirePackage{amsmath}
 \RequirePackage[amsthm, hyperref, thmmarks]{ntheorem}
@@ -19,7 +21,7 @@
 
 \RequirePackage[linkcolor=blue,citecolor=blue,colorlinks=true]{hyperref}
 \RequirePackage[nameinlink,capitalize]{cleveref}
-
+ 
 %\RequirePackage{algorithmicx}
 \RequirePackage{algorithm}
 \RequirePackage[commentColor=blue]{algpseudocodex}
@@ -54,7 +56,7 @@ layers/standard/.define layer set={%
 }
 
 \RequirePackage{graphicx}
-\RequirePackage{caption}
+%\RequirePackage{caption}
 \RequirePackage{subcaption}
 
 \RequirePackage{booktabs}
@@ -70,7 +72,7 @@ layers/standard/.define layer set={%
   maxbibnames  = 10,
   isbn         = false,
   url          = false,
-  style        = numeric, 
+  style        = alphabetic, 
   natbib       = true
 ]{biblatex}
 
@@ -107,6 +109,7 @@ layers/standard/.define layer set={%
 \newcommand{\vect}[1]{\ensuremath{\boldsymbol{#1}}}
 
 % Misc
+\newcommand{\deriv}[2]{\ensuremath{\frac{d #1}{d #2}}}
 \newcommand{\pderiv}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 \newcommand{\pderivtwo}[2]{\ensuremath{\frac{\partial^2 #1}{\partial #2^2}}}
 \newcommand{\func}[2]{\ensuremath{#1\!\lrp{#2}}}

@@ -12,7 +12,6 @@ where $J = \lrp{1 + \alpha_1^2}A^2\omega^2k_i$,  $\grad_2 = \lrp{\partial_x, \pa
 and $\vect{v} = \lrp{u, v}$. 
 
 \subsection{Boundary Conditions}
-\subsubsection{Laplace-Young Boundary Condition}
 The Laplace-Young boundary condition states that at the interface $z = \func{\phi}{x, y, t}$, the pressure is given by 
 $\func{p}{\phi} = -\gamma \kappa + p_0$, where $\kappa$ is the curvature of the boundary, $\gamma$ is the surface tension, and $p_0$ is the atmospheric pressure. 
 Thus, integrating \cref{eq:pressure_z} gives 
@@ -23,10 +22,10 @@ Thus, integrating \cref{eq:pressure_z} gives
     \label{eq:laplace_young}
 \end{align}
 If we define 
-\begin{align}
-    \func{P}{x, y, t} = \phi \rho g \cos\beta + \frac{\rho J}{2k_i} \cexpp - \gamma\kappa, 
-    \label{eq:cap_P}
-\end{align}
+%\begin{align}
+    $\func{P}{x, y, t} = \phi \rho g \cos\beta + \frac{\rho J}{2k_i} \cexpp - \gamma\kappa$, 
+    %\label{eq:cap_P}
+%\end{align}
 this simplifies \cref{eq:laplace_young} to 
 \begin{align*}
     \func{p}{z} = P - z\rho g \cos\beta - \frac{\rho J}{2k_i}\cexpz + p_0
@@ -35,11 +34,9 @@ which further gives
 \begin{align}
     \grad_2 p %= \grad_2 \lrp{P - z\rho g \cos\beta - \frac{J}{2k_i}\cexpz + p_0}
     = \grad_2 \lrp{P - \frac{\rho J}{2k_i}\cexpz}
-    = \grad P - \rho J\cexpz \vect{i}
+    = \grad P - \rho J\cexpz \vect{i}. 
     \label{eq:grad2_p_expanded}
 \end{align}
-
-\subsubsection{Further Boundary Conditions}
 Further boundary conditions include 
 \begin{gather}
     \evalat{\vect{v}}{z = s\lrp{x,y}} = \vect{0} 
@@ -47,17 +44,16 @@ Further boundary conditions include
     \evalat[\Big]{\pderiv{\vect{v}}{z}}{z = \phi\lrp{x,y,t}} = \vect{0} 
     \label{eq:bound_stress}
 \end{gather}
-where \cref{eq:bound_noslip} is a no-slip BC along the surface $z = \func{s}{x,y}$ and \cref{eq:bound_stress}
+where \cref{eq:bound_noslip} is a no-slip boundary condition along the surface $z = \func{s}{x,y}$ and \cref{eq:bound_stress}
 enforces vanishing shear stresses along the fluid-air boundary $z = \func{\phi}{x,y,t}$. 
 
 \subsection{Film Equation}
-\subsubsection{Velocity Vector}
-Under the Laplace-Young BC and \cref{eq:grad2_p_expanded}, \cref{eq:pressure_grad} simplifies into 
+Using the Laplace-Young boundary condition and substituting \cref{eq:grad2_p_expanded} into \cref{eq:pressure_grad} yields 
 \begin{align}
     \grad P = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\beta \vect{i}. 
     \label{eq:pressure_grad_new}
 \end{align}
-Integrating \cref{eq:pressure_grad_new} twice with respect to $z$ and utilizing  
+Integrating \cref{eq:pressure_grad_new} twice with respect to $z$ and utilizing the boundary conditions in
 \cref{eq:bound_noslip} and \cref{eq:bound_stress} gives
 \begin{align}
     \nonumber \int_{s}^{z}\int_{z}^{\phi} \pderivtwo{\vect{v}}{z} \; dzdz &= \frac{1}{\mu}\int_{s}^{z}\int_{z}^{\phi} \lrp{\grad P - \rho g \sin\beta\vect{i}} \; dzdz \\
@@ -67,13 +63,8 @@ Integrating \cref{eq:pressure_grad_new} twice with respect to $z$ and utilizing
     \vect{v} &=\frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}. 
     \label{eq:vel_vectv}
 \end{align}
-
-\subsubsection{Depth Averaged Velocity}
 Averaging over the height removes the $z$ dependence of $\vect{v} = \lrp{u, v}$ and gives the equation 
-\begin{align*}
-    \bar{\vect{v}} = \frac{1}{h} \int_{s}^{\phi} \vect{v} \; dz.
-    %\label{eq:vectv_bar_int}
-\end{align*}
+$\bar{\vect{v}} = \frac{1}{h} \int_{s}^{\phi} \vect{v} \; dz$.
 Plugging in \cref{eq:vel_vectv} and solving this integral then gives 
 \begin{align}
     \nonumber \bar{\vect{v}} &= \frac{1}{h} \int_{s}^{\phi} \frac{1}{\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}} \lrp{\frac{z^2}{2} - \phi z - \frac{s^2}{2} + \phi s}  \; dz\\
@@ -83,12 +74,8 @@ Plugging in \cref{eq:vel_vectv} and solving this integral then gives
     &= -\frac{h^2}{3\mu} \lrp{\grad P - \rho g \sin\beta\vect{i}}.
     \label{eq:uv_bar}
 \end{align}
-
-\subsubsection{Conservation of Mass}
 The conservation of mass, when depth-averaged, gives 
-\begin{align*}
-    \pderiv{h}{t} + \grad \cdot \lrp{h\bar{\vect{v}}} = 0
-\end{align*}
+$\pderiv{h}{t} + \grad \cdot \lrp{h\bar{\vect{v}}} = 0$
 which results in 
 \begin{align}
     \begin{aligned}
@@ -180,7 +167,7 @@ Substituting these scales into \cref{eq:nondim_sec} yields
     \pderiv{h}{t} = \lrp{\frac{h_c^2 \rho g}{\gamma}}^{1/3} \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
     \sin\beta \pderiv{h^3}{x} + 
-    \frac{\eta \rho x_c^2 h_c}{2k_i \gamma t_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}
+    \frac{\eta \rho x_c^2 h_c}{2k_i \gamma t_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}.
     \label{eq:nondim_third}
 \end{align}  
 The velocity scale is chosen naturally as $U = x_c/t_c = h_c^2\rho g/3\mu$,
@@ -192,7 +179,7 @@ are non-dimensional quantities. Hence,
     \pderiv{h}{t} = \lrp{3\mathrm{Ca}}^{1/3} \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
     \sin\beta \pderiv{h^3}{x} + 
-    \frac{\eta \mathrm{We}}{2k_i} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}
+    \frac{\eta \mathrm{We}}{2k_i} \grad \cdot \lrb{h^3 \grad e^{2k_i x}}.
     \label{eq:nondim_fourth}
 \end{align}  
 If we further define 
@@ -213,3 +200,15 @@ then we get a final equation
     \end{aligned}
     \label{eq:nondim_final}
 \end{align}  
+
+\subsection{Two-Dimensional Equation}
+Although \cref{eq:nondim_final} is a simplified partial differential equation, 
+it is still strongly nonlinear. To gain a basic understanding of some of its solutions,
+we make the further simplification that the free surface of the thin film does not change
+in the transverse direction (i.e.\! $h$ and $s$ are both $y$-independent). This assumption
+further reduces our problem to only one variable in space and simplifies \cref{eq:nondim_final} to 
+\begin{align}
+    \pderiv{h}{t} = D\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \sin\beta \lrb{h^3}_{x} + 2k_iC \lrb{h^3 e^{2k_ix}}_x
+    \label{eq:two_dim_final}
+\end{align}
+where $h$ and $\phi$ are now functions of $x$ and $t$.    
