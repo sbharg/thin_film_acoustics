@@ -1,14 +1,14 @@
 
 \subsection{Lubrication Approximation}
 As shown in \cite{kondic2003instabilities}, if the Reynold's number is sufficiently low, the inertial terms of the Navier-Stokes equations 
-can be ignored. Thus, under the effects of gravity and SAW streaming forces (see \cite{shiokawa1994saw} for more information), the lubrication approximation gives
+can be ignored. Thus, under the effects of gravity and surface acoustic wave streaming forces (see \cite{shiokawa1994saw} for more information), the lubrication approximation gives
 \begin{gather}
     \grad_2 p = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\beta \vect{i} - \rho J\cexpz\vect{i}
     \label{eq:pressure_grad}\\
     \pderiv{p}{z} = -\rho g \cos\beta - \rho J\alpha_1 \cexpz
     \label{eq:pressure_z}
 \end{gather}
-where $J = \lrp{1 + \alpha_1^2}A^2\omega^2k_i$,  $\grad_2 = \lrp{\partial_x, \partial_y}$, 
+where $J = \lrp{1 + \alpha_1^2}A^2\omega^2k_i$ has units of $m/s^2$,  $\grad_2 = \lrp{\partial_x, \partial_y}$, 
 $\vect{v} = \lrp{u, v}$, and $x_0$ is a function of time denoting the position of the contact line 
 between the SAW and the fluid. 
 
@@ -120,7 +120,7 @@ where $\eta = \lrp{1 + \alpha_1^2}  \bar{A}^2 \bar{\omega}^2 \bar{k_i}$ is non-d
     + \frac{1}{3\mu} \lrb{ 
         \frac{\eta \rho h_c^5}{2k_i t_c^2 x_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x - x_0 + \alpha_1 \phi \lrp{h_c/x_c}}}}
     }.
-    \label{eq:nondim_first}
+\label{eq:nondim_first}
 \end{multline}
 By virtue of the fact that we are looking at thin films, $h_c \ll x_c$. Additionally, by definition
 $\alpha_1 = -i \alpha$ where 
@@ -134,22 +134,33 @@ $V_r > V_w$,
 \end{equation*}
 is real and $\bigo{1}$. Thus, we can ignore any component of the exponent 
 that is multiplied by $\alpha_1$ and $h_c / x_c$, which simplifies \cref{eq:nondim_first} to 
-\begin{align}
-    \nonumber \frac{h_c}{t_c} \pderiv{h}{t} &= \frac{1}{3\mu} \lrb{
+\begin{gather*}
+    \nonumber \frac{h_c}{t_c} \pderiv{h}{t} = \frac{1}{3\mu} \lrb{
         \frac{h_c^4}{x_c^2} \rho g \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
         \frac{\gamma h_c^4}{x_c^4} \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
         \frac{h_c^3}{x_c} \rho g \sin\beta \pderiv{h^3}{x} + 
         \frac{\eta h_c^5}{2k_i t_c^2 x_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x-x_0}}}
         %\frac{\eta h_c^5}{t_c^2 x_c^2} \pderiv{}{x} \lrb{h^3 \grad e^{2k_i x}}. 
-    }\\ 
-    \nonumber &= \frac{\gamma h_c^4}{3\mu x_c^4} \lrb{
-        \frac{x_c^2 \rho g}{\gamma} \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
-        \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
-        \frac{x_c^3 \rho g}{\gamma h_c} \sin\beta \pderiv{h^3}{x} + 
-        %\frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
-        \frac{\eta \rho x_c^2 h_c}{2k_i \gamma t_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x-x_0}}}
-    }\\
-    \pderiv{h}{t} &= \frac{\gamma h_c^3 t_c}{3\mu x_c^4} \lrb{
+    }. 
+    %\nonumber &= \frac{\gamma h_c^4}{3\mu x_c^4} \lrb{
+    %    \frac{x_c^2 \rho g}{\gamma} \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
+    %    \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
+    %    \frac{x_c^3 \rho g}{\gamma h_c} \sin\beta \pderiv{h^3}{x} + 
+    %    %\frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
+    %    \frac{\eta \rho x_c^2 h_c}{2k_i \gamma t_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x-x_0}}}
+    %}\\
+    %\pderiv{h}{t} = \frac{\gamma h_c^3 t_c}{3\mu x_c^4} \lrb{
+    %    \frac{x_c^2 \rho g}{\gamma} \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
+    %    \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
+    %    \frac{x_c^3 \rho g}{\gamma h_c} \sin\beta \pderiv{h^3}{x} + 
+    %    %\frac{\eta \rho x_c^2 h_c}{\gamma t_c^2} \pderiv{}{x} \lrb{h^3 e^{2k_i x}}
+    %    \frac{\eta \rho x_c^2 h_c}{2k_i \gamma t_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x-x_0}}}
+    %}.
+    %\label{eq:nondim_sec}
+\end{gather*}
+The above equation can be manipulated to the form 
+\begin{align}
+    \pderiv{h}{t} = \frac{\gamma h_c^3 t_c}{3\mu x_c^4} \lrb{
         \frac{x_c^2 \rho g}{\gamma} \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
         \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
         \frac{x_c^3 \rho g}{\gamma h_c} \sin\beta \pderiv{h^3}{x} + 
@@ -185,19 +196,19 @@ are non-dimensional quantities. Hence,
 \end{align}  
 If we further define 
 \begin{equation*}
-    D = \lrp{3\mathrm{Ca}}^{1/3}, \quad C = \frac{\eta \mathrm{We}}{2k_i}
+    D = \lrp{3\mathrm{Ca}}^{1/3}, \quad C = \eta \mathrm{We} = \frac{J}{g}
 \end{equation*}
-then we get a final equation 
+and notice $\grad e^{2k_i \lrp{x-x_0}} = 2k_i e^{2k_i \lrp{x-x_0}}\vect{i}$ then we get a final equation 
 \begin{align}
     \begin{aligned}
     \pderiv{h}{t} &= D \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
     \sin\beta \pderiv{h^3}{x} + 
-    C \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x-x_0}}}\\
+    C \grad \cdot \lrb{h^3 e^{2k_i \lrp{x-x_0}}\vect{i}}\\
     &= D \cos\beta \grad \cdot \lrb{ h^3 \grad \lrp{h+s} } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\lrp{h+s} } - 
     \sin\beta \pderiv{h^3}{x} + 
-    C \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x-x_0}}}.
+    C \grad \cdot \lrb{h^3 e^{2k_i \lrp{x-x_0}}\vect{i}}.
     \end{aligned}
     \label{eq:nondim_final}
 \end{align}  
@@ -209,7 +220,7 @@ we make the further simplification that the free surface of the thin film does n
 in the transverse direction (i.e.\! $h$ and $s$ are both $y$-independent). This assumption
 further reduces our problem to only one variable in space and simplifies \cref{eq:nondim_final} to 
 \begin{align}
-    \pderiv{h}{t} = D\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \sin\beta \lrb{h^3}_{x} + 2k_iC \lrb{h^3 e^{2k_i \lrp{x-x_0}}}_x
+    \pderiv{h}{t} = D\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \sin\beta \lrb{h^3}_{x} + C \lrb{h^3 e^{2k_i \lrp{x-x_0}}}_x
     \label{eq:two_dim_final}
 \end{align}
 where $h$ and $\phi$ are now functions of $x$ and $t$.    
