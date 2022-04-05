@@ -1,0 +1,2 @@
+For bump initial condition, left front is a 2nd deriv root between (0, max_point) and right front is a 2nd deriv
+root between (max_point, Lx)
