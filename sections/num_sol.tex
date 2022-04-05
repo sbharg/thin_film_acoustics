@@ -5,7 +5,7 @@ $\Delta x = L_x / N_x$ and $N_x$ is the number of grid points excluding the orig
 If we further define $\func{h_j}{t} = \func{h}{x_j, t}$, we can discretize 
 \cref{eq:two_dim_final} into a system of ordinary differential equations of the form 
 \begin{equation}
-    \deriv{h_j}{t} = f_j = D\cos \beta f_j^{(1)} - f_j^{(2)} - \sin \beta f_j^{(3)} + C f_j^{(4)}, \quad j = 0, \ldots, N_x
+    \deriv{h_j}{t} = f_j = \mathrm{Bo}\cos \beta f_j^{(1)} - f_j^{(2)} - \varepsilon \mathrm{Bo} \sin \beta f_j^{(3)} + \varepsilon k_i \lrp{1 + \alpha_1^2} \mathrm{We_{ac}} f_j^{(4)}, \quad j = 0, \ldots, N_x
     \label{eq:ode_sys}
 \end{equation}
 where $f_j^{(k)}$ is the discretization of the $k$-th term in
