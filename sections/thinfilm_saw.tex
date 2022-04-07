@@ -155,13 +155,13 @@ Choose $t_c$ such that
 \end{align*}
 Additionally, we define the Bond number $\mathrm{Bo} = x_c^2 \rho g / \gamma$ and acoustic Weber number
 $\mathrm{We_{ac}} = \rho \omega^2 A^2 x_c / \gamma$. 
-Substituting these into \cref{eq:nondim_sec} yields a final equation
+Substituting these into \cref{eq:nondim_sec} and expanding $J$ yields a final equation
 \begin{align}
     \begin{aligned}
     \pderiv{h}{t} = \mathrm{Bo} \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
-    \varepsilon \mathrm{Bo} \sin\beta \pderiv{h^3}{x} + 
-    \frac{\varepsilon \lrp{1 + \alpha_1^2}}{2} \mathrm{We_{ac}} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x-x_0}}}. 
+    \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \pderiv{h^3}{x} + 
+    \frac{\lrp{1 + \alpha_1^2} \mathrm{We_{ac}}}{2\varepsilon} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x-x_0}}}. 
     %&= \mathrm{Bo} \cos\beta \grad \cdot \lrb{ h^3 \grad \lrp{h+s} } - 
     %\grad \cdot \lrb{h^3 \grad\grad^2\lrp{h+s} } - 
     %\varepsilon \mathrm{Bo} \sin\beta \pderiv{h^3}{x} + 
@@ -177,8 +177,8 @@ we make the further simplification that the free surface of the thin film does n
 in the transverse direction (i.e.\! $h$ and $s$ are both $y$-independent). This assumption
 further reduces our problem to only one variable in space and simplifies \cref{eq:nondim_final} to 
 \begin{align}
-    \pderiv{h}{t} = \mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \varepsilon \mathrm{Bo} \sin\beta \lrb{h^3}_{x} + 
-    \varepsilon k_i \lrp{1 + \alpha_1^2} \mathrm{We_{ac}} \lrb{h^3 e^{2k_i \lrp{x-x_0}}}_x
+    \pderiv{h}{t} = \mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \lrb{h^3}_{x} + 
+    \frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x-x_0}}}_x
     \label{eq:two_dim_final}
 \end{align}
 where $h$ and $\phi$ are now functions of $x$ and $t$.    
