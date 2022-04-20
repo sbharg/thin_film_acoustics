@@ -124,7 +124,7 @@ This gives
 %\end{equation*}
 %with $V_r$ and $V_w$ being the velocity of the SAW in the solid substrate and fluid, respectively. Since 
 %$V_r > V_w$, 
-%\begin{equation*}
+%\begin{equation*} 
 %    \alpha = i \lrp{\lrp{V_r/V_w}^2 - 1}^{1/2} \quad \rightarrow \quad \alpha_1 = \lrp{\lrp{V_r/V_w}^2 - 1}^{1/2}
 %\end{equation*}
 %is real and $\bigo{1}$. Thus, we can ignore any component of the exponent 
@@ -134,7 +134,7 @@ This gives
         \frac{h_c^4}{x_c^2} \rho g \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
         \frac{\gamma h_c^4}{x_c^4} \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
         \frac{h_c^3}{x_c} \rho g \sin\beta \pderiv{h^3}{x} + 
-        \frac{\rho J^* h_c^3}{2 x_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \epsilon \phi}}}
+        \frac{\rho J^* h_c^3}{2 x_c^2} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}}}
         %\frac{\eta h_c^5}{t_c^2 x_c^2} \pderiv{}{x} \lrb{h^3 \grad e^{2k_i x}}. 
     },
 \end{gather*}
@@ -144,7 +144,7 @@ which can be further manipulated to the form
         \frac{x_c^2 \rho g}{\gamma} \cos \beta \grad \cdot \lrb{h^3\grad\phi} - 
         \grad \cdot \lrb{h^3 \grad \grad^2 \phi} - 
         \frac{x_c^3 \rho g}{\gamma h_c} \sin\beta \pderiv{h^3}{x} + 
-        \frac{\rho J^* x_c^2}{2 \gamma h_c} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \epsilon \phi}}}
+        \frac{\rho J^* x_c^2}{2 \gamma h_c} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}}}
     }.
     %\label{eq:nondim_sec}
 \end{align*}
@@ -160,7 +160,7 @@ Substituting these constants and expanding $J^*$ yields a final equation
     \pderiv{h}{t} = \mathrm{Bo} \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
     \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
     \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \pderiv{h^3}{x} + 
-    \frac{\lrp{1 + \alpha_1^2} \mathrm{We_{ac}}}{2\varepsilon} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \epsilon \phi}}}. 
+    \frac{\lrp{1 + \alpha_1^2} \mathrm{We_{ac}}}{2\varepsilon} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}}}. 
     \label{eq:nondim_final}
 \end{align}   
 The first term and third terms represent the out of plane and in plane influences of gravity, respectively, on 
@@ -175,7 +175,7 @@ in the transverse direction (i.e.\! $h$ and $s$ are both $y$-independent). This 
 further reduces our problem to only one variable in space and simplifies \cref{eq:nondim_final} to 
 \begin{align}
     \pderiv{h}{t} = \mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \lrb{h^3}_{x} + 
-    \frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x + \alpha_1 \epsilon \phi}} \lrp{1 + \alpha_1 \epsilon \phi_x}}_x
+    \frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}} \lrp{1 + \alpha_1 \varepsilon \phi_x}}_x
     \label{eq:two_dim_final}
 \end{align}
 where $h$ and $\phi$ are now functions of $x$ and $t$.
@@ -195,6 +195,6 @@ decays to $x_c k_i^{\text{oil}}$ as $h$ increases. See \cref{fig:attenuation} fo
     \centering
     \includegraphics[scale=0.25]{images/report/attenuation.png}
     \caption{Attenuation as a function of $h$ for $k_i^{\text{oil}} = -1000 \lrb{m^{-1}}, k_i^{\text{air}} = -1 \lrb{m^{-1}}$, 
-    $\lambda = 20*10^{-3} \lrb{m}$, and $x_c = 10^{-3}$}. 
+    $\lambda = 20*10^{-3} \lrb{m}$, and $x_c = 10^{-3}$.} 
     \label{fig:attenuation}
 \end{figure}
