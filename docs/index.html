@@ -7,6 +7,8 @@
     <meta name='description' content='Project Page for Math 451 S22 Capstone'>
     <meta name='author' content='Bhargav Samineni'>
     <link href='./css/blog.css' rel='stylesheet'/>
+    <link href="./css/markdown.css" rel="stylesheet">
+    <link href="./css/trac.css" rel="stylesheet">
 
     <script type='text/x-mathjax-config'>
         MathJax.Hub.Config({
@@ -24,28 +26,58 @@
     </script>
         
     <script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML' type='text/javascript'></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 </head>
 <body>
-    <div id='blog' class='wrap'>
-        <div id='intro'>
-            <div class='quote'>
-                <p>I learned very early the difference between knowing the name of something and knowing something.</p>
-                <a href='https://en.wikiquote.org/wiki/Richard_Feynman' target='_blank'>Richard Feynman</a>
+    <div class='content'>
+        <div class="front-matter">
+            <div class="wrap">
+                <h1>Modelling Acoustically Driven Flows over Topography</h1>
+                <h4>Math 451 S22 - Capstone Project</h1>
+                <div class="bylines">
+                    <div class="byline">
+                        <p>Supervisor: Dr. Lou Kondic</p>
+                        <p>Bhargav Samineni</p>
+                    </div>
+                </div>
+                <div class="clear"></div>
             </div>
         </div>
-        <div id='posts' class='section'>
-            <div class='post-row'>
-                <p class='post-title'>
-                    asdf
-                </p>
-                <p class='post-date'>
-                    date
-                </p>
-            </div>
-            <p class='post-subtitle'>
-                subtitle
+        <div class="wrap article">
+            <p class="hidden">
+                $
+                \newcommand{\lrp}[1]{\left( #1 \right)}
+                \newcommand{\lrb}[1]{\left[ #1 \right]}
+                \newcommand{\lrc}[1]{\left\{ #1 \right\}}
+                \newcommand{\lrv}[1]{\left\langle #1 \right\rangle}
+                \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+                \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+
+                \newcommand{\grad}{\nabla}
+                \newcommand{\bigo}[1]{\operatorname{\mathcal{O}}\!\left(#1\right)}
+                \newcommand{\bigomega}[1]{\Omega\!\left(#1\right)}
+
+                \newcommand{\vect}[1]{\boldsymbol{#1}}
+                \newcommand{\deriv}[2]{\frac{d #1}{d #2}}
+                \newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+                \newcommand{\pderivtwo}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+                \newcommand{\func}[2]{#1\!\lrp{#2}}
+                \renewcommand{\bar}[1]{\overline{#1}}
+                $
             </p>
+        
+            <h2 id="gov-eq">Governing Equation</h2>
+            <p>
+                adsf 
+                $$ 
+                \begin{align}
+                    \pderiv{h}{t} = \mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \lrb{h^3}_{x} + 
+                    \frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}} \lrp{1 + \alpha_1 \varepsilon \phi_x}}_x
+                    \label{eq:two_dim_final}
+                \end{align}
+                $$
+            </p>
+            
+        
         </div>
     </div>
 </body>
