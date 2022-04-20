@@ -10,22 +10,33 @@
     <link href="./css/markdown.css" rel="stylesheet">
     <link href="./css/trac.css" rel="stylesheet">
 
-    <script type='text/x-mathjax-config'>
-        MathJax.Hub.Config({
-          jax: ['input/TeX', 'output/HTML-CSS'],
-          tex2jax: {
-            inlineMath: [ ['$', '$'] ],
-            displayMath: [ ['$$', '$$']],
-            processEscapes: true,
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            extensions: ['color.js']
-          },
-          messageStyle: 'none',
-          'HTML-CSS': { preferredFont: 'TeX', availableFonts: ['STIX','TeX'] }
-        });
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [ ['$$', '$$']],
+                processEscapes: true,
+                processEnvironments: true,
+                processRefs: true, 
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+                extensions: ['color.js'],
+                tags: 'ams'
+            },
+            svg: {
+                fontCache: 'global'
+            }, 
+            chtml: {
+                scale: 0.9
+            }, 
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], 
+                enableMenu: false
+            }
+        };
     </script>
         
-    <script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML' type='text/javascript'></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>   
 </head>
 <body>
     <div class='content'>
@@ -73,11 +84,15 @@
                 Using the lubrication approximation, we reduce the equations of motion for the film
                 to a single nonlinear partial differential equation that describes the evolution of the film height relative to the 
                 surface topography in time and space. 
+
+                Eq referencing test Eq. \eqref{eq:two_dim_final}. 
             </p>
 
             <div class='figure'>
-                <img src="./images/flow.gif"
-                     style="width: 60%; display: block; margin: 0 auto;"/>
+                <!--<img src="./images/flow.gif" style="width: 60%; display: block; margin: 0 auto;"/>-->
+                <video style="width: 60%; display: block; margin: 0 auto;" controls loop>
+                    <source src="./images/video.mp4" type="video/mp4">
+                </video>
                 <div class='caption'>
                     <span class='caption-label'>Figure 1.</span> 
                     Test for inline math $\func{f}{n} = \frac{n}{2}$.   
