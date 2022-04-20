@@ -16,6 +16,17 @@ needs special attention in order to not lead to a large computational stencil.
 
 \subsubsection{Fourth-Order Term}
 Following the method outlined in \cite{kondic2003instabilities}, discretizing the fourth order term (i.e.\! $f_j^{(2)}$) can be done by a combination
-of forward and backward differences. 
+of forward and backward differences. If we define 
+\begin{align*}
+    h_{x, j} = \frac{h_{j+1} - h_j}{\Delta x} \quad \quad \quad h_{\overline{x}, j} = \frac{h_{j} - h_{j-1}}{\Delta x}
+\end{align*}
+as the forward and backward differences, respectively, then a possible discretization is 
+\begin{equation}
+    f_j^{\lrp{2}} = \lrp{\func{a}{h_{i-1}, h_i} \phi_{\overline{x}x\overline{x}}}_{x}
+    \label{eq:f2_disc}
+\end{equation}
+where $\func{a}{j_1, j_2} = \frac{1}{2} \lrp{{j_1}^3 + {j_2}^3}$. This discretization leads to a 
+second order approximation that has a five point stencil, which is better than the seven point stencil
+that would result from using a central differencing scheme. 
 
 \subsubsection{Lower Order Terms}
