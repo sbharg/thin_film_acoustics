@@ -5,8 +5,8 @@
 
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
-
-\title{Surface Acoustic Wave Driven Flows over Topography}
+ 
+\title{Modelling Surface Acoustic Wave Driven Flows over Topography}
 \author{Bhargav Samineni}
 \date{\today}
 
@@ -31,6 +31,14 @@
 Let $\func{s}{x, y}$ describe the topography of the surface, 
 $\func{h}{x,y,t}$ be the film thickness relative to $\func{s}{x,y}$ at any point in the $\lrp{x,y}$ plane at a time $t$, 
 and $\func{\phi}{x,y,t} = \func{s}{x,y} + \func{h}{x,y,t}$ be the height of the free surface at any point in the $\lrp{x,y}$ plane at a time $t$.
+
+\begin{figure}[hb]  
+    \centering
+    \includegraphics[width=\textwidth]{images/report/samp_diagram.pdf}
+    \caption{A simplified sketch of a fluid flowing down a plane inclined at an angle $\beta$. The SAW travels
+    from left to right, and the surface of the plane is described by the topography function $\func{s}{x, y} = 0$.}
+    \label{fig:diagram}
+\end{figure}
 
 \section{Governing Equation} \label{sec:gov_eq}
 \input{sections/thinfilm_saw.tex}

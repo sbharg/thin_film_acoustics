@@ -111,13 +111,37 @@ h1 {
 .article .figure {
   border-top: 1px solid hsla(0, 0%, 0%, 0.2);
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
-  padding: 20px 0;
+  padding: 20px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.article .figure .subfigure {
+  max-width: 48%; 
+  margin: 0px 2px;
+}
+.article .figure .subfigure video {
+  width: 100%; 
+}
+.article .figure .subfigure img {
+  width: 100%; 
+}
+.article .figure .subcaption {
+  padding-top: 15px;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 1.2em;
+  text-align: center;
+}
+.article .figure .subcaption-label {
+  font-weight: bold;
 }
 .article .figure .caption {
   padding-top: 15px;
   display: inline-block;
   font-size: 13px;
   line-height: 1.2em;
+  align-self: flex-end;
 }
 .article .figure .caption-label {
   font-weight: bold;
