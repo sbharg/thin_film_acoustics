@@ -87,7 +87,7 @@
 
 \begin{document}
    
-    \frame{\titlepage}    
+    \frame{\titlepage}     
 
     \section{Introduction}
     \begin{frame}
@@ -102,13 +102,20 @@
             \label{fig:model_diagram}
         \end{figure}
     \end{frame}
-    \begin{frame}
-        We let $\func{s}{x, y}$ describe the topography of the surface, 
-        $\func{h}{x,y,t}$ be the film thickness relative to $\func{s}{x,y}$ at a time $t$, 
-        and $\func{\phi}{x,y,t} = \func{s}{x,y} + \func{h}{x,y,t}$ be the height of the free surface at a time $t$.
+    \begin{frame} 
+        We let
+        \begin{itemize}
+            \item $\func{s}{x, y}$ describe the topography of the surface
+            \item $\func{h}{x,y,t}$ describe the film thickness relative to $\func{s}{x,y}$ 
+            \item $\func{\phi}{x,y,t} = \func{s}{x,y} + \func{h}{x,y,t}$ be the height of the free surface
+        \end{itemize}
 
         For completeness, we derive an equation to model fluids in a 
-        3-D system, but we perform numerical simulations on the simplified 2-D case. 
+        3-D system, but we perform simulations on the simplified 2-D case. 
+        \begin{figure}
+            \centering
+            \includegraphics[width=.6\textwidth]{images/funcs_diagram.pdf}
+        \end{figure}
     \end{frame}
 
     \section{Governing Equation}
