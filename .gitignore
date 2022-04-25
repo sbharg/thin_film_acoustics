@@ -3,6 +3,8 @@
 .DS_Store
 runs/
 code/testing.ipynb
+report/sections/gravity_only
+report/sections/dimless_form_old.tex
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

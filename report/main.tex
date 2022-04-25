@@ -1,0 +1,66 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{preamble}
+\addbibresource{refs.bib}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+ 
+\title{Modelling Surface Acoustic Wave Driven Flows over Topography}
+\author{Bhargav Samineni}
+\date{\today}
+
+\begin{document}
+ 
+\maketitle
+
+\begin{abstract}
+    Motivated by the acoustowetting phenomenon and its applications to the dynamic wetting 
+    of objects by a coating liquid, we explore the influence of surface acoustic waves and gravity on the motion of a thin film
+    flowing over a surface. We consider surfaces that may be both inclined and include topographical features like trenches, mounds, bumps, etc. 
+    Using the lubrication approximation, we reduce the equations of motion for the film
+    to a single nonlinear partial differential equation that describes the evolution of the film height relative to the 
+    surface topography in time and space. 
+\end{abstract}
+ 
+%\dosecttoc
+%\tableofcontents
+ 
+\section{Introduction}
+
+Let $\func{s}{x, y}$ describe the topography of the surface, 
+$\func{h}{x,y,t}$ be the film thickness relative to $\func{s}{x,y}$ at any point in the $\lrp{x,y}$ plane at a time $t$, 
+and $\func{\phi}{x,y,t} = \func{s}{x,y} + \func{h}{x,y,t}$ be the height of the free surface at any point in the $\lrp{x,y}$ plane at a time $t$.
+
+\begin{figure}[hb]  
+    \centering
+    \includegraphics[width=.75\textwidth]{images/samp_diagram.pdf}
+    \caption{A simplified sketch of a fluid flowing down a plane inclined at an angle $\beta$. The SAW travels
+    from left to right, and the surface of the plane is described by the topography function $\func{s}{x, y} = 0$.}
+    \label{fig:diagram}
+\end{figure}
+
+\section{Governing Equation} \label{sec:gov_eq}
+\input{sections/thinfilm_saw.tex}
+ 
+\section{Method of Solution} \label{sec:method_of_sol}
+\input{sections/num_sol.tex}
+
+%\begin{figure}[h]  
+%    \centering
+%    \resizebox{.75\linewidth}{!}{\input{images/test/plt.tex}}
+%    \caption{A sample image}
+%\end{figure}
+ 
+\newpage
+\begin{appendices}
+    \section{Topography Definitions} \label{sec:topography}
+
+    \section{Spatial Discretization Expanded}\label{sec:space_discrete_expand}
+    \input{sections/discretization.tex}
+\end{appendices}
+
+\newpage
+\printbibliography
+
+\end{document} 
