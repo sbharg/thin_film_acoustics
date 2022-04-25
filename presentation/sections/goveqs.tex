@@ -1,0 +1,36 @@
+\section{Governing Equation}
+\subsection{Incompressible Navier-Stokes}
+\begin{frame}
+    We start with the Incompressible Navier-Stokes Equation
+    \begin{multline}
+        \rho \lrp{\pderiv{\vecu}{t} + \lrp{\vecu \cdot \grad}\vecu} = -\grad p
+        + \mu \grad^2 \vecu + \rho g \sin \beta \vect{i} - \rho g \cos \beta \vect{k} \\
+        - \rho J e^{2k_i \lrp{x + \alpha_1 z}} \vect{i} - \rho J \alpha_1 e^{2k_i \lrp{x + \alpha_1 z}} \vect{k}
+        \label{eq:ns-eq}
+    \end{multline}
+    where $\vect{u} =$ Fluid velocity, $p =$ Fluid pressure, $\rho =$ Fluid density, $\mu =$ Fluid viscosity, 
+    $k_i =$  Attenuation coefficient, $\alpha_1 =$ Geometric constant, and $J = \lrp{1 + \alpha_1^2}A^2\omega^2 k_i$
+    is a constant we define to consolidate terms. 
+
+    The first two vector terms in the $x$ and $z$ direction represent the in plane and out of plane 
+    components of gravity, while the last two vector terms represent the in plane and out of plane 
+    components of the SAW forcing. 
+\end{frame}
+\subsection{Lubrication Approximation}
+\begin{frame}
+    The Lubrication Approximation assumes we are dealing with thin films
+    and allows us to ignore the inertial terms of the Navier-Stokes equation (LHS) as well as the in plane
+    derivatives and normal component of $\vecu$. Hence, \cref{eq:ns-eq} reduces to 
+    \begin{equation}
+        \begin{aligned}
+            \grad_2 p &= \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\beta \vect{i} - \rho J\cexpz\vect{i}\\
+            \pderiv{p}{z} &= -\rho g \cos\beta - \rho J\alpha_1 \cexpz
+        \end{aligned}
+        \label{eq:lub_approx}
+    \end{equation}
+    where $\grad_2 = \lrp{\partial_x, \partial_y}$ and $\vect{v} = \lrp{u, v}$. 
+\end{frame}
+\subsection{Boundary Conditions}
+\begin{frame}
+
+\end{frame}
