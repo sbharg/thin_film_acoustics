@@ -2,4 +2,4 @@ Run local server
 python3 -m http.server --cgi 1200                                                                           
 
 Convert gif to mp4
-ffmpeg -i flow.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4 
+ffmpeg -i flow.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" flow.mp4 

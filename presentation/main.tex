@@ -8,14 +8,12 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage[nameinlink,capitalize]{cleveref}
-
 \usepackage{amsmath}
 \usepackage{mathtools}
-
+\usepackage{comment}
+\usepackage{multimedia}
   
-\definecolor{navyblue}{rgb}{0.04706, 0.13725, 0.26667}
 \definecolor{oxfordblue}{rgb}{0.0, 0.13, 0.28}
-\definecolor{sapphire}{rgb}{0.03, 0.15, 0.4}
 
 \usetheme{Berlin}
 \usecolortheme[named=oxfordblue]{structure}
@@ -111,11 +109,11 @@
             \item $\func{s}{x, y}$ describe the topography of the surface
             \item $\func{h}{x,y,t}$ describe the film thickness relative to $\func{s}{x,y}$ 
             \item $\func{\phi}{x,y,t} = \func{s}{x,y} + \func{h}{x,y,t}$ be the height of the free surface
-            \item $b$ describe the precursor film height
+            \item $b$ describe the precursor film height (Using a precursor film accounts for any contact line singularities)
         \end{itemize}
 
-        For completeness, we derive an equation to model fluids in a 
-        3-D system, but we perform simulations on the simplified 2-D case. 
+        For completeness, we derive an equation to model fluids in a general
+        3-D system, but we perform simulations on the simplified non-inclined 2-D case. 
         %\begin{figure}
         %    \centering
         %    \includegraphics[width=.6\textwidth]{images/funcs_diagram.pdf}
