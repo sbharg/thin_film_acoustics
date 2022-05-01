@@ -24,7 +24,7 @@
     \end{equation*}
     then a possible discretization is 
     \begin{equation*}
-        \lrb{h^3\phi_{xxx}}_x \rightarrow f_j^{\lrp{2}} = \lrp{\frac{1}{2}\lrp{h_{i-1}^3 + h_i^3} \phi_{\overline{x}x\overline{x}, j}}_{x}
+        \lrb{h^3\phi_{xxx}}_x \rightarrow f_j^{\lrp{2}} = \lrp{\frac{1}{2}\lrp{h_{j-1}^3 + h_j^3} \phi_{\overline{x}x\overline{x}, j}}_{x}
     \end{equation*}
     which is a second order approximation that gives a five point stencil. 
 \end{frame}
@@ -32,7 +32,7 @@
     Because the other terms are lower order, we can apply simpler differencing methods
     as long as they are also second order and don't increase the size of the stencil.
     \begin{gather*}  
-        \lrb{h^3\phi_x}_x \rightarrow f_j^{\lrp{1}} = \frac{1}{2}\lrp{\lrp{h_{i-1}^3 + h_i^3} \phi_{x, j}}_{\overline{x}}\\
+        \lrb{h^3\phi_x}_x \rightarrow f_j^{\lrp{1}} = \frac{1}{2}\lrp{\lrp{h_{j-1}^3 + h_j^3} \phi_{x, j}}_{\overline{x}}\\
         \lrb{h^3}_x \rightarrow f_j^{\lrp{3}} = \lrp{h^3_j}_{x^*}\\
     \end{gather*}
     \vspace{-4em}

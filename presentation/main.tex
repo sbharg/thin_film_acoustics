@@ -12,6 +12,20 @@
 \usepackage{mathtools}
 \usepackage{comment}
 \usepackage{multimedia}
+\usepackage[
+    backend      = biber,
+    doi          = false,
+    giveninits   = true,
+    maxcitenames = 1,
+    maxbibnames  = 10,
+    isbn         = false,
+    url          = false,
+    style        = numeric, 
+    natbib       = true
+]{biblatex}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\addbibresource{refs.bib}
+
   
 \definecolor{oxfordblue}{rgb}{0.0, 0.13, 0.28}
 
@@ -80,7 +94,7 @@
 
 %------------------------------------------------------------
 %This block of code defines the information to appear in the Title Page
-\title{Modelling Surface Acoustic Wave Driven Flows over Topography}
+\title{Modelling Surface Acoustic Wave Driven Thin Film Flows over Topography}
 
 \author{Bhargav Samineni}
 %End of title page configuration block
@@ -93,13 +107,12 @@
     \section{Introduction}
     \begin{frame}
         Want to numerically simulate the flow of a fluid driven by 
-        high frequency surface acoustic waves over a surface that may include topography
-        and may be inclined. 
+        high frequency surface acoustic waves over a possibly inclined surface that may include topography. 
 
         \begin{figure}[hb]
             \centering
             \includegraphics[width=.75\textwidth]{images/samp_diagram.pdf}
-            \caption{A simplified sketch of a fluid flowing down an inclined plane with no topography.}
+            \caption{A simplified sketch of a fluid flowing down an inclined plane with a bump topography.}
             \label{fig:model_diagram}
         \end{figure}
     \end{frame}
@@ -109,11 +122,11 @@
             \item $\func{s}{x, y}$ describe the topography of the surface
             \item $\func{h}{x,y,t}$ describe the film thickness relative to $\func{s}{x,y}$ 
             \item $\func{\phi}{x,y,t} = \func{s}{x,y} + \func{h}{x,y,t}$ be the height of the free surface
-            \item $b$ describe the precursor film height (Using a precursor film accounts for any contact line singularities)
+            \item $b$ describe the precursor film height (Using a precursor film accounts for any contact line paradoxes)
         \end{itemize}
 
         For completeness, we derive an equation to model fluids in a general
-        3-D system, but we perform simulations on the simplified non-inclined 2-D case. 
+        3-D system, but we perform simulations on the simplified 2-D case with no incline. 
         %\begin{figure}
         %    \centering
         %    \includegraphics[width=.6\textwidth]{images/funcs_diagram.pdf}
@@ -123,5 +136,13 @@
     \include{sections/goveqs.tex}
     \include{sections/discretization.tex}
     \include{sections/simulations.tex}
+
+    %\setbeamertemplate{headline}{}
+    \appendix
+    \begin{frame}[plain]
+        \frametitle{References}
+        \nocite{*}
+        \printbibliography
+    \end{frame}
 
 \end{document}

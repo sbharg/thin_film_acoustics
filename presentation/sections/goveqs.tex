@@ -1,13 +1,19 @@
 \section{Governing Equation}
 \subsection{Incompressible Navier-Stokes}
 \begin{frame}
-    We start with the Incompressible Navier-Stokes Equation
-    \begin{multline}
-        \rho \lrp{\pderiv{\vecu}{t} + \lrp{\vecu \cdot \grad}\vecu} = -\grad p
-        + \mu \grad^2 \vecu + \rho g \sin \beta \vect{i} - \rho g \cos \beta \vect{k} \\
-        - \rho J e^{2k_i \lrp{x + \alpha_1 z}} \vect{i} - \rho J \alpha_1 e^{2k_i \lrp{x + \alpha_1 z}} \vect{k}
+    We start with the Incompressible Navier-Stokes Equations
+    \begin{equation}
+        \nabla \cdot \vecu = 0
+        \label{eq:incompress}
+    \end{equation}
+    \begin{equation}
+        \begin{aligned}
+            \rho \lrp{\pderiv{\vecu}{t} + \lrp{\vecu \cdot \grad}\vecu} = &-\grad p
+            + \mu \grad^2 \vecu + \rho g \sin \beta \vect{i} - \rho g \cos \beta \vect{k} \\
+            &- \rho J e^{2k_i \lrp{x + \alpha_1 z}} \vect{i} - \rho J \alpha_1 e^{2k_i \lrp{x + \alpha_1 z}} \vect{k}
+        \end{aligned}
         \label{eq:ns-eq}
-    \end{multline}
+    \end{equation}
     where 
     \begin{itemize} 
         \item $\vect{u} = \lrp{u,v,w} =$ Fluid velocity, $p =$ Fluid pressure, $\rho =$ Fluid density, $\mu =$ Fluid viscosity
@@ -53,10 +59,13 @@
     The conservation of mass, when depth-averaged, gives 
     \begin{equation*}\pderiv{h}{t} + \grad \cdot \lrp{h\bar{\vect{v}}} = 0.\end{equation*}
     Approximating $\kappa \approx \grad^2 \phi$, this gives a final dimensional equation 
-    \begin{multline}
-        \pderiv{h}{t} = \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \beta h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi}} \\ + \frac{1}{3\mu} \lrb{- \rho g \sin\beta \pderiv{h^3}{x} + \grad \cdot \lrb{\frac{\rho J}{2k_i}h^3\grad \cexpp}}.
+    \begin{equation}
+        \begin{aligned}
+            \pderiv{h}{t} = \; &\frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \beta h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi}} \\ 
+            &+ \frac{1}{3\mu} \lrb{- \rho g \sin\beta \pderiv{h^3}{x} + \grad \cdot \lrb{\frac{\rho J}{2k_i}h^3\grad \cexpp}}.
+        \end{aligned}
         \label{eq:thin_film_dim}
-    \end{multline}
+    \end{equation}
 \end{frame}
 \subsection{Dimensionless Equation - 2 Spatial Dimensions}
 \begin{frame}
@@ -66,16 +75,18 @@
     \end{equation*}
     to get dimensionless quantities and using the following characteristics
     \begin{equation*}
-        t_c = \frac{3\mu x_c^3}{\gamma h_c^3}, \quad \varepsilon = \frac{h_c}{x_c}, \quad \mathrm{Bo} = \frac{x_c^2\rho g}{\gamma}, \quad \mathrm{We_{ac}} = \frac{\rho \omega^2 A^2x_c}{\gamma}
+        t_c = \frac{3\mu x_c^4}{\gamma h_c^3}, \quad \varepsilon = \frac{h_c}{x_c}, \quad \mathrm{Bo} = \frac{x_c^2\rho g}{\gamma}, \quad \mathrm{We_{ac}} = \frac{\rho \omega^2 A^2x_c}{\gamma}
     \end{equation*}
     gives the dimensionless equation 
-    \begin{multline}
-        \pderiv{h}{t} = \mathrm{Bo} \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
-        \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
-        \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \pderiv{h^3}{x} \\ + 
-        \frac{\lrp{1 + \alpha_1^2} \mathrm{We_{ac}}}{2\varepsilon} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}}} 
+    \begin{equation}
+        \begin{aligned}
+            \pderiv{h}{t} = \mathrm{Bo} \cos\beta \grad \cdot & \lrb{ h^3 \grad \phi } - 
+            \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
+            \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \pderiv{h^3}{x} \\
+            &+\frac{\lrp{1 + \alpha_1^2} \mathrm{We_{ac}}}{2\varepsilon} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}}} 
+        \end{aligned} 
         \label{eq:nondim_final_twod}
-    \end{multline} 
+    \end{equation}
     after removing any overlines.   
 \end{frame}
 \subsection{Dimensionless Equation - 1 Spatial Dimension}
@@ -83,11 +94,13 @@
     We make the further simplification that the free surface of the film does not change
     in the transverse direction (i.e.\! $h$ and $s$ are both $y$-independent). 
     This simplifies \cref{eq:nondim_final_twod} to 
-    \begin{multline}
-        \pderiv{h}{t} = \mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \lrb{h^3}_{x} \\ + 
-        \frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}} \lrp{1 + \alpha_1 \varepsilon \phi_x}}_x.
+    \begin{equation}
+        \begin{aligned}
+            \pderiv{h}{t} = \; &\mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \lrb{h^3}_{x} \\  
+            &+\frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}} \lrp{1 + \alpha_1 \varepsilon \phi_x}}_x.
+        \end{aligned} 
         \label{eq:nondim_final_oned}
-    \end{multline}
+    \end{equation}
 
     To enforce that the SAW forcing occurs starting from the film front on the left, we redefine 
     $k_i$ (in dimensionless form) as 
