@@ -5,6 +5,14 @@ runs/
 code/testing.ipynb
 report/sections/gravity_only
 report/sections/dimless_form_old.tex
+faster_vids/
+presentation/images/bump_05/*.mp4
+presentation/images/bump_05/*.gif
+presentation/images/bump_10_shorter/*.mp4
+presentation/images/bump_10_shorter/*.gif
+presentation/~$main_copy.pptx
+presentation/~$main.pptx
+presentation/main_copy.pptx
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
