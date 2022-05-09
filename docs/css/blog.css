@@ -108,6 +108,26 @@ h1 {
   padding-bottom: 1rem;
   padding-top: 1em;
 }
+
+.article .fig {
+  border-top: 1px solid hsla(0, 0%, 0%, 0.2);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
+  padding: 20px 0px;
+}
+.article .fig img {
+  width: 100%; 
+}
+.article .fig .caption {
+  padding-top: 15px;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1.2em;
+  align-self: flex-end;
+}
+.article .fig .caption-label {
+  font-weight: bold;
+}
+
 .article .figure {
   border-top: 1px solid hsla(0, 0%, 0%, 0.2);
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
@@ -116,6 +136,11 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+.article .figure img {
+  width: 100%; 
+}
+
 .article .figure .subfigure {
   max-width: 48%; 
   margin: 0px 2px;
