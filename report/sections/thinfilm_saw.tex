@@ -1,14 +1,43 @@
+We let $\func{s}{x, y}$ describe the topography of the surface, 
+$\func{h}{x,y,t}$ be the film thickness relative to $\func{s}{x,y}$ at any point in the $\lrp{x,y}$ plane at a time $t$, 
+and $\func{\phi}{x,y,t} = \func{s}{x,y} + \func{h}{x,y,t}$ be the height of the free surface at any point in the $\lrp{x,y}$ plane at a time $t$.
+We consider both the influence of gravity and acoustic streaming on the motion of the film, so 
+our surface may also be inclined in addition to having Rayleigh surface acoustic waves (SAWs) propagating along the 
+$x$-coordinate as shown in \cref{fig:diagram}. 
+
+The starting point for modeling thin films are the incompressible Navier-Stokes equations 
+\begin{gather}
+    \nabla \cdot \vect{u} = 0
+    \label{eq:incompress}\\
+    \rho \lrp{\pderiv{\vecu}{t} + \lrp{\vecu \cdot \grad}\vecu} = -\grad p
+    + \mu \grad^2 \vecu + \rho g \sin \beta \vect{i} - \rho g \cos \beta \vect{k}
+    - \rho J e^{2k_i \lrp{x + \alpha_1 z}} \vect{i} - \rho J \alpha_1 e^{2k_i \lrp{x + \alpha_1 z}} \vect{k}
+    \label{eq:ns-eq}
+\end{gather}
+where $\vect{u} = \lrp{u,v,w}$ is the fluid velocity, $p$ is the fluid pressure, $\rho$ is the fluid density, $\mu$ is the fluid viscosity
+$k_i$ is the attenuation coefficient of the liquid, $\alpha_1$ is the geometric constant of the liquid, and $J = \lrp{1 + \alpha_1^2}A^2\omega^2 k_i$ 
+is a constant we define to consolidate terms from acoustic streaming. We refer to see \cite{shiokawa1994saw} for more information on acoustic streaming 
+and the derivation of the equations for acoustic forcing. 
+
+\begin{figure}[ht]  
+    \centering
+    \includegraphics[width=.75\textwidth]{images/samp_diagram.pdf}
+    \caption{A simplified sketch of a fluid flowing down a plane inclined at an angle $\beta$. The SAW travels
+    from left to right, and the surface of the plane is described by a topography function $s$ that has a bump.}
+    \label{fig:diagram}
+\end{figure} 
+
 
 \subsection{Lubrication Approximation}
 As shown in \cite{kondic2003instabilities}, if the Reynold's number is sufficiently low, the inertial terms of the Navier-Stokes equations 
-can be ignored. Thus, under the effects of gravity and surface acoustic wave streaming forces (see \cite{shiokawa1994saw} for more information), the lubrication approximation gives
+as well as the in plane derivatives and normal component of $\vecu$ can be ignored. Thus, under the effects of gravity and surface acoustic wave streaming forces, the lubrication approximation simplifies \cref{eq:ns-eq} to
 \begin{gather}
     \grad_2 p = \mu \frac{\partial^2 \vect{v}}{\partial z^2} + \rho g \sin\beta \vect{i} - \rho J\cexpz\vect{i}
     \label{eq:pressure_grad}\\
     \pderiv{p}{z} = -\rho g \cos\beta - \rho J\alpha_1 \cexpz
     \label{eq:pressure_z}
 \end{gather}
-where $J = \lrp{1 + \alpha_1^2}A^2\omega^2k_i$,  $\grad_2 = \lrp{\partial_x, \partial_y}$, and 
+where $\grad_2 = \lrp{\partial_x, \partial_y}$ and 
 $\vect{v} = \lrp{u, v}$. 
 
 \subsection{Boundary Conditions}
@@ -94,7 +123,7 @@ when plugging in \cref{eq:uv_bar}. Approximating the curvature $\kappa \approx \
 \end{align}
 
 \subsection{Dimensionless Form}
-Scale the in-plane coordinates and time by 
+We scale the in-plane coordinates and time by 
 \begin{gather*}
     \bar{x} = \frac{x}{x_c}, \quad \bar{y} = \frac{y}{x_c}, \quad \bar{z} = \frac{z}{h_c}, \quad \bar{t} = \frac{t}{t_c}
     %\label{eq:coord_time_scales}
@@ -165,24 +194,24 @@ Substituting these constants and expanding $J^*$ yields a final equation
 The first term and third terms represent the out of plane and in plane influences of gravity, respectively, on 
 the film while the second term represents the influence of capillary forces and the fourth term represents the 
 contribution of SAW driving.  
-
+ 
 \subsection{Two-Dimensional Equation and Enforcing a Film Front}
 Although \cref{eq:nondim_final} is a simplified partial differential equation, 
 it is still strongly nonlinear. To gain a basic understanding of some of its solutions,
 we make the further simplification that the free surface of the thin film does not change
 in the transverse direction (i.e.\! $h$ and $s$ are both $y$-independent). This assumption
 further reduces our problem to only one variable in space and simplifies \cref{eq:nondim_final} to 
-\begin{align}
-    \pderiv{h}{t} = \mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \lrb{h^3}_{x} + 
+\begin{multline}
+    \pderiv{h}{t} = \mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \lrb{h^3}_{x} \\ + 
     \frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}} \lrp{1 + \alpha_1 \varepsilon \phi_x}}_x
     \label{eq:two_dim_final}
-\end{align}
+\end{multline}
 where $h$ and $\phi$ are now functions of $x$ and $t$.
 
 Additionally, to enforce that the SAW forcing occurs starting from the film front, we redefine 
 $k_i$ (in dimensionless form) as 
 \begin{align}
-    \func{k_i}{h} = x_c \lrp{\lrp{k_i^{\text{oil}} - k_i^{\text{air}}}\lrp{1 - e^{-x_c(h-b)/\lambda}} + k_i^{\text{air}}}
+    \func{k_i}{\phi} = x_c \lrp{\lrp{k_i^{\text{oil}} - k_i^{\text{air}}}\lrp{1 - e^{-x_c(\phi-b)/\lambda}} + k_i^{\text{air}}}
     \label{eq:k_i}
 \end{align}
 where $k_i^{\text{oil}}$ denotes the attenuation in the film and $k_i^{\text{air}}$ denotes the attenuation

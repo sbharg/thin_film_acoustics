@@ -6,11 +6,12 @@ If we further define $\func{h_j}{t} = \func{h}{x_j, t}$, we can discretize
 \cref{eq:two_dim_final} into a system of ordinary differential equations of the form 
 \begin{equation}
     \deriv{h_j}{t} = f_j = \mathrm{Bo}\cos \beta f_j^{(1)} - f_j^{(2)} -  \frac{\mathrm{Bo}}{\varepsilon} \sin \beta f_j^{(3)} +  
-    \frac{k_i \lrp{1 + \alpha_1^2} \mathrm{We_{ac}}}{\varepsilon} f_j^{(4)}, \quad j = 0, \ldots, N_x
+    \frac{k_i \lrp{1 + \alpha_1^2} \mathrm{We_{ac}}}{\varepsilon} f_j^{(4)}, \quad j = 1, \ldots, N_x-1
     \label{eq:ode_sys}
 \end{equation}
 where $f_j^{(k)}$ is the discretization of the $k$-th term in
-the right-hand side of \cref{eq:two_dim_final}. Because the governing equation 
+the right-hand side of \cref{eq:two_dim_final} and the ODEs for $j = 0, N_x$ are prescribed by boundary conditions. 
+Because the governing equation 
 contains high order derivatives, the discretization used for certain components 
 needs special attention in order to not lead to a large computational stencil.
 
@@ -22,7 +23,7 @@ of forward and backward differences. If we define
 \end{align*}
 as the forward and backward differences, respectively, then a possible discretization is 
 \begin{equation}
-    f_j^{\lrp{2}} = \lrp{\func{a}{h_{i-1}, h_i} \phi_{\overline{x}x\overline{x}, j}}_{x, j}
+    f_j^{\lrp{2}} = \lrp{\func{a}{h_{j-1}, h_j} \phi_{\overline{x}x\overline{x}, j}}_{x, j}
     \label{eq:f2_disc}
 \end{equation}
 where $\func{a}{j_1, j_2} = \frac{1}{2} \lrp{{j_1}^3 + {j_2}^3}$. This discretization leads to a 
