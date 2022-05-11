@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Bhargav Samineni</title>
+    <title>Acoustically Driven Thin Film Flows over Topography</title>
     <meta charset='UTF-8'>
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
 
@@ -96,49 +96,6 @@
                     from left to right, and the surface of the plane is described by a topography function $s$ that has a bump.
                 </div>
             </div>
-
-            <!--
-            <div class='figure'>
-                <div class='subfigure'>
-                    <video controls loop>
-                        <source src="./images/video.mp4" type="video/mp4">
-                    </video>
-                    <div class='subcaption'>
-                        <span class='subcaption-label'>Figure 1a.</span> 
-                        Video A
-                    </div>
-                </div>
-                <div class='subfigure'>
-                    <img src="./images/flow.gif"/>
-                    <div class='subcaption'>
-                        <span class='subcaption-label'>Figure 1b.</span> 
-                        Video B
-                    </div>
-                </div>
-                <div class='subfigure'>
-                    <video controls loop>
-                        <source src="./images/video.mp4" type="video/mp4">
-                    </video>
-                    <div class='subcaption'>
-                        <span class='subcaption-label'>Figure 1c.</span> 
-                        Video C
-                    </div>
-                </div>
-                <div class='subfigure'>
-                    <video controls loop>
-                        <source src="./images/video.mp4" type="video/mp4">
-                    </video>
-                    <div class='subcaption'>
-                        <span class='subcaption-label'>Figure 1d.</span> 
-                        Video D
-                    </div>
-                </div>
-                <div class='caption'>
-                    <span class='caption-label'>Figure 1.</span> 
-                    Test for inline math $\func{f}{n} = \frac{n}{2}$. 
-                </div>
-            </div>
-            -->
             
             <h2 id="gov-eq">Governing Dimensional Equation</h2>
             <p>
@@ -186,8 +143,8 @@
                 and approximating $\kappa = \nabla^2 \phi$ gives us a dimensional equation 
                 $$
                 \begin{equation}
-                        \pderiv{h}{t} = \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \beta h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi}}
-                        + \frac{1}{3\mu} \lrb{- \rho g \sin\beta \pderiv{h^3}{x} + \grad \cdot \lrb{\frac{\rho J}{2k_i}h^3\grad \cexpp}}.
+                        \pderiv{h}{t} = \frac{1}{3\mu} \lrb{ \grad \cdot \lrb{\rho g \cos \beta h^3 \grad \phi} - \grad \cdot \lrb{\gamma h^3 \grad\grad^2\phi}
+                        - \rho g \sin\beta \pderiv{h^3}{x} + \grad \cdot \lrb{\frac{\rho J}{2k_i}h^3\grad \cexpp}}.
                 \label{eq:thin_film_dim}
                 \end{equation}
                 $$
@@ -195,19 +152,139 @@
             </p>
 
             <h2 id="gov-eq-nondim">Dimensionless Equation and Simplifications</h2>
-
-            <!--
             <p>
-                $$ 
+                To transform the dimensional governing equation into a dimensionless one, we use the following scalings 
+                $$
+                    \bar{x} = \frac{x}{x_c}, \quad \bar{y} = \frac{y}{x_c}, \quad \bar{z} = \frac{z}{h_c}, \quad \bar{t} = \frac{t}{t_c}
+                $$
+                for the in-plane coordinates and time where an overline denotes a dimensionless quantity. Additionally, we define 
+                $\varepsilon = h_c / x_c$ and define the nondimensional Bond number and Acoustic Weber number as 
+                $$
+                    \mathrm{Bo} = \frac{x_c^2 \rho g}{\gamma} \quad \quad \mathrm{We_{ac}} = \frac{\rho \omega^2 A^2 x_c}{\gamma}. 
+                $$
+                Using the scalings and nondimensional parameters, we can manipulate Eq. \ref{eq:thin_film_dim} into 
+                $$
+                \begin{align}
+                    \pderiv{h}{t} = \mathrm{Bo} \cos\beta \grad \cdot \lrb{ h^3 \grad \phi } - 
+                    \grad \cdot \lrb{h^3 \grad\grad^2\phi } - 
+                    \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \pderiv{h^3}{x} + 
+                    \frac{\lrp{1 + \alpha_1^2} \mathrm{We_{ac}}}{2\varepsilon} \grad \cdot \lrb{h^3 \grad e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}}}
+                \label{eq:nondim_final}
+                \end{align}   
+                $$
+                after removing any overlines. 
+            </p>
+            <p>
+                To further simplify the model, we reduce our problem to two spatial dimensions by making the assumption that 
+                the free surface of the thin film does not change in the transverse direction (i.e. $h$ and $s$ are both $y$-independent). 
+                This reduces Eq. \ref{eq:nondim_final} to 
+                $$
                 \begin{align}
                     \pderiv{h}{t} = \mathrm{Bo}\cos\beta \lrb{h^3 \phi_x}_x - \lrb{h^3 \phi_{xxx}}_{x} - \frac{\mathrm{Bo}}{\varepsilon} \sin\beta \lrb{h^3}_{x} + 
-                    \frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}} \lrp{1 + \alpha_1 \varepsilon \phi_x}}_x
+                    \frac{k_i \lrp{1 + \alpha_1^2}\mathrm{We_{ac}}}{\varepsilon} \lrb{h^3 e^{2k_i \lrp{x + \alpha_1 \varepsilon \phi}} \lrp{1 + \alpha_1 \varepsilon \phi_x}}_x. 
                     \label{eq:two_dim_final}
                 \end{align}
                 $$
             </p>
-            -->
-            
+            <p>
+                Additionally, to enforce that the SAW forcing occurs starting from the film front, we redefine 
+                $k_i$ (in dimensionless form) as 
+                $$
+                \begin{align}
+                    \func{k_i}{\phi} = x_c \lrp{\lrp{k_i^{\text{oil}} - k_i^{\text{air}}}\lrp{1 - e^{-x_c(\phi-b)/\lambda}} + k_i^{\text{air}}}
+                    \label{eq:k_i}
+                \end{align}
+                $$
+                where $k_i^{\text{oil}}$ denotes the attenuation in the film, $k_i^{\text{air}}$ denotes the attenuation
+                outside the film, and $\lambda$ is a dimensional constant that controls the steepness of the change from $k_i^{\text{air}}$ to $k_i^{\text{oil}}$. 
+            </p>
+
+            <h2 id="results">Results</h2>
+            <p>
+                To solve the dimensionless governing PDE, we first discretize it into a system of coupled ODEs. We then use an implicit time stepping scheme 
+                called Rodas4 to model to free surface height over time. Additionally, although the governing PDE describes the motion of thin film with both gravity and SAWs as driving forces, 
+                we are mainly interested in the case where the SAWs are the primary driving force. Hence, in all our simulations 
+                we use $\beta = 0$. 
+            </p>
+            <p>
+                In the case of a flat topography (i.e. $\func{s}{x} = 0$) we find that the initial drop moves from left to right and spreads out 
+                as it does so, which matches experimental observations. 
+            </p>
+            <div class='figure'>
+                <div class='subfigure'>
+                    <img src="./images/flat/plt_notitle.png"/>
+                    <div class='subcaption'>
+                        <span class='subcaption-label'>Figure 2a.</span> 
+                        Fluid profile plotted every $\Delta t = 10000$ dimensionless time units
+                    </div>
+                </div>
+                <div class='subfigure'>
+                    <video controls loop>
+                        <source src="./images/flat/flow.mp4" type="video/mp4">
+                    </video>
+                    <div class='subcaption'>
+                        <span class='subcaption-label'>Figure 2b.</span> 
+                        Fluid profile animation
+                    </div>
+                </div>
+                <div class='caption'>
+                    <span class='caption-label'>Figure 2.</span> 
+                    Fluid profile for a flat topography
+                </div>
+            </div>
+            <p>
+                When we introduce a bump topography, we find that if the bump is short enough, the initial drop can clear the bump 
+                and spread over the domain as shown below. 
+            </p>
+            <div class='figure'>
+                <div class='subfigure'>
+                    <img src="./images/bump_05/plt_notitle.png"/>
+                    <div class='subcaption'>
+                        <span class='subcaption-label'>Figure 3a.</span> 
+                        Fluid profile plotted every $\Delta t = 10000$ dimensionless time units
+                    </div>
+                </div>
+                <div class='subfigure'>
+                    <video controls loop>
+                        <source src="./images/bump_05/flow.mp4" type="video/mp4">
+                    </video>
+                    <div class='subcaption'>
+                        <span class='subcaption-label'>Figure 3b.</span> 
+                        Fluid profile animation
+                    </div>
+                </div>
+                <div class='caption'>
+                    <span class='caption-label'>Figure 3.</span> 
+                    Fluid profile for a small bump topography
+                </div>
+            </div>
+            <p>
+                However, when the maximum height of the bump is too large, the fluid gets stuck on the bump 
+                as shown below. This behavior makes sense as the SAW travels along $h=0$, so in essence there is no 
+                acoustic forcing that can drive the fluid over the bump region. 
+            </p>
+            <div class='figure'>
+                <div class='subfigure'>
+                    <img src="./images/bump_10/plt_notitle.png"/>
+                    <div class='subcaption'>
+                        <span class='subcaption-label'>Figure 3a.</span> 
+                        Fluid profile plotted every $\Delta t = 10000$ dimensionless time units
+                    </div>
+                </div>
+                <div class='subfigure'>
+                    <video controls loop>
+                        <source src="./images/bump_10/flow.mp4" type="video/mp4">
+                    </video>
+                    <div class='subcaption'>
+                        <span class='subcaption-label'>Figure 3b.</span> 
+                        Fluid profile animation
+                    </div>
+                </div>
+                <div class='caption'>
+                    <span class='caption-label'>Figure 3.</span> 
+                    Fluid profile for a large bump topography
+                </div>
+            </div>
         
         </div>
     </div>
