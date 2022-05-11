@@ -31,3 +31,24 @@ second order approximation that has a five point stencil, which is better than t
 that would result from using a central differencing scheme. 
 
 \subsubsection{Lower Order Terms}
+Because the other terms are lower order, we can apply simpler differencing methods as long as 
+they are also second order and don't increase the size of the stencil. For example, we could apply 
+a combination of forward and backward differencing to get 
+\begin{align}
+    f_j^{\lrp{1}} = \lrp{\func{a}{h_{j-1}, h_j}\phi_{x, j}}_{\bar{x}, j}. 
+\end{align}
+If we define central differencing as 
+\begin{equation*}
+    h_{x^*, j} = \frac{h_{j+1} - h_{j-1}}{2\Delta x}
+\end{equation*}
+then the other two terms could be discretized as 
+\begin{gather}
+    f_j^{\lrp{3}} = \lrp{h^3_j}_{x^*, j}\\
+    f_j^{\lrp{4}} = \lrp{h^3_j e^{2k_i \lrp{x_j + \alpha_1 \varepsilon \phi_j}} \lrp{1 + \alpha_1 \varepsilon \phi_{x^*, j}}}_{x^*, j}. 
+\end{gather}
+A complete expansion of these discretized terms is provided in \cref{sec:space_discrete_expand} of the appendix. 
+
+\subsection{Time stepping}
+Because the governing PDE describing the system is stiff (i.e. some numerical methods will be unstable unless the step size taken for time evolution is extremely small), 
+we find that using explicit schemes do not work for time stepping. Thus, we choose to use an implicit scheme called Rodas4 implemented 
+in the DifferntialEquations.jl library in Julia. 

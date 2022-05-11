@@ -45,18 +45,37 @@ intersection of these two interactions has not been studied.
  
 \section{Method of Solution} \label{sec:method_of_sol}
 \input{sections/num_sol.tex}
- 
-%\begin{figure}[h]  
-%    \centering
-%    \resizebox{.75\linewidth}{!}{\input{images/test/plt.tex}}
-%    \caption{A sample image}
-%\end{figure}
- 
+
+\section{Numerical Simulations} \label{sec:results}
+\input{sections/results.tex}
+
+\section{Conclusion} \label{sec:conclusion}
+The presented results show that a reasonably accurate model can be developed for simulating the movement of thin 
+film flows over topography when driven primarily by SAWs. We first develop a governing nonlinear PDE by simplifying the 
+incompressible Navier-Stokes equations for the problem using the lubrication approximation, with a further simplification 
+to reduce our equation to two spatial dimensions instead of three. We then solve the PDE over a domain of interest by discretizing 
+into a system of ODEs, which is then solved using an implicit time stepping scheme. However, a limitation of our model is that 
+it does not realistically model the interactions between a flowing and stationary liquid as the assumption that the stationary liquid can be 
+modelled as a feature of the surface topography does not take into the account of leakiness of SAWs in liquids. 
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{images/bump_05/plt_notitle.png}
+        \caption{Small bump}
+        \label{fig:bump05_profile}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{images/bump_10_shorter/plt_notitle.png}
+        \caption{Tall bump}
+        \label{fig:bump10_profile}
+    \end{subfigure}
+    \caption{Fluid profile on bump topographies plotted every $\Delta t = 10000$ dimensionless time units}
+    \label{fig:bump_profiles}
+\end{figure}
+
 \newpage
 \begin{appendices}
-    \section{Topography Definitions} \label{sec:topography}
-
-    \section{Spatial Discretization Expanded}\label{sec:space_discrete_expand}
     \input{sections/discretization.tex}
 \end{appendices}
 

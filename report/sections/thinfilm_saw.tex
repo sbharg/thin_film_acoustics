@@ -16,7 +16,7 @@ The starting point for modeling thin films are the incompressible Navier-Stokes 
 \end{gather}
 where $\vect{u} = \lrp{u,v,w}$ is the fluid velocity, $p$ is the fluid pressure, $\rho$ is the fluid density, $\mu$ is the fluid viscosity
 $k_i$ is the attenuation coefficient of the liquid, $\alpha_1$ is the geometric constant of the liquid, and $J = \lrp{1 + \alpha_1^2}A^2\omega^2 k_i$ 
-is a constant we define to consolidate terms from acoustic streaming. We refer to see \cite{shiokawa1994saw} for more information on acoustic streaming 
+is a constant we define to consolidate terms from acoustic streaming. We refer to \cite{shiokawa1994saw} for more information on acoustic streaming 
 and the derivation of the equations for acoustic forcing. 
 
 \begin{figure}[ht]  
@@ -216,13 +216,13 @@ $k_i$ (in dimensionless form) as
 \end{align}
 where $k_i^{\text{oil}}$ denotes the attenuation in the film and $k_i^{\text{air}}$ denotes the attenuation
 outside the film. The $\lambda$ term is a dimensional constant that controls the steepness of the change from $k_i^{\text{air}}$ to $k_i^{\text{oil}}$, 
-while $b$ denotes the precursor film height. In essence, when $h = b$, $k_i = x_c k_i^{\text{air}}$ and  
+while $b$ denotes the precursor film height. In essence, when $\phi = b$, $k_i = x_c k_i^{\text{air}}$ and  
 decays to $x_c k_i^{\text{oil}}$ as $h$ increases. See \cref{fig:attenuation} for an example of such a graph. 
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.25]{images/attenuation.png}
-    \caption{Attenuation as a function of $h$ for $k_i^{\text{oil}} = -1000 \lrb{m^{-1}}, k_i^{\text{air}} = -1 \lrb{m^{-1}}$, 
-    $\lambda = 20*10^{-3} \lrb{m}$, and $x_c = 10^{-3}$.} 
+    \caption{Attenuation as a function of $\phi$ for $k_i^{\text{oil}} = -1000 \lrb{m^{-1}}, k_i^{\text{air}} = -1 \lrb{m^{-1}}$, 
+    $\lambda = 2*10^{-3} \lrb{m}$, and $x_c = 10^{-3}$.} 
     \label{fig:attenuation}
 \end{figure}
