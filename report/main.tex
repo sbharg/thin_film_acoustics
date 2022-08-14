@@ -1,18 +1,21 @@
-\documentclass[letterpaper]{article}
+\documentclass{article}
 
-\usepackage{preamble}
+\usepackage[biblatex, letter]{preamble}
 \addbibresource{refs.bib}
 
-\setcounter{secnumdepth}{5}
-\setcounter{tocdepth}{5}
- 
+\NewDocumentCommand{\evalat}{sO{\big}mm}{%
+  \IfBooleanTF{#1}
+   {\mleft. #3 \mright|_{#4}}
+   {#3#2|_{#4}}%
+}
+
 \title{Modelling Surface Acoustic Wave Driven Thin Film Flows over Topography}
 \author{Bhargav Samineni}
 \date{\today}
 
 \begin{document}
  
-\maketitle 
+\maketitle  
 
 \begin{abstract}
     Motivated by the acoustowetting phenomenon and its applications to the dynamic wetting 
@@ -73,7 +76,7 @@ modelled as a feature of the surface topography does not take into the account o
     \caption{Fluid profile on bump topographies plotted every $\Delta t = 10000$ dimensionless time units}
     \label{fig:bump_profiles}
 \end{figure}
-
+ 
 \newpage
 \begin{appendices}
     \input{sections/discretization.tex}

@@ -2,26 +2,114 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{preamble}[custom shortcuts as a package]
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Paper dimensions - A4 vs Letterpaper
+%------------------------------------%
+\DeclareOption{a4}{
+  \PassOptionsToPackage{a4paper, margin=2cm}{geometry}
+}
+\DeclareOption{letter}{
+  \PassOptionsToPackage{letterpaper, margin=1in}{geometry}
+}
+
+% Bib Management - biblatex vs natbib
+%-----------------------------------%
+\newif\if@biblatex\@biblatexfalse
+\DeclareOption{biblatex}{
+  \@biblatextrue
+}
+
+\ExecuteOptions{letter} 
+\ProcessOptions\relax
+
+% Pdf Packages
+%------------%
 \RequirePackage[utf8]{inputenc}
-%\RequirePackage{lmodern}
-\RequirePackage[T1]{fontenc}
 \RequirePackage{microtype}
+\RequirePackage[T1]{fontenc}
 \RequirePackage[english]{babel}
 \RequirePackage{csquotes}
 \DeclareUnicodeCharacter{2212}{-}
 \RequirePackage{comment}
 \RequirePackage[page]{appendix}
+\RequirePackage{authblk}
+\renewcommand*{\Affilfont}{\normalsize\normalfont}
 
+\RequirePackage{booktabs}
+\RequirePackage{xspace}
+\RequirePackage{enumitem}
+
+\RequirePackage{geometry}
+
+\if@biblatex
+\RequirePackage[backend = biber, doi = false, maxcitenames = 2, maxbibnames = 99, isbn = false, url = false, style = alphabetic, giveninits = true, natbib = true]{biblatex}
+\else
+\RequirePackage[square,numbers]{natbib}
+\bibliographystyle{plainnat}
+\fi
+
+% Makes title bold
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE\bfseries\@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+%\RequirePackage{lipsum} 
+
+% Math Packages
+%-------------%
 \RequirePackage{amsmath}
-\RequirePackage[amsthm, hyperref, thmmarks]{ntheorem}
 \RequirePackage{amssymb}
-\RequirePackage{mathtools} 
+\RequirePackage{mathtools}
+\RequirePackage{amsthm}
+\RequirePackage{thmtools}
+
+% Colors + Refs
+%-------------%
+\RequirePackage{color}
+\RequirePackage[dvipsnames]{xcolor}
+\definecolor{Red}{rgb}{1,0,0}
+\def\red{\color{Red}}
+\definecolor{Blue}{rgb}{0,0,1}
+\def\blue{\color{Blue}}
+\definecolor{linkcolor}{rgb}{0, 0.25, 0.75}
+
+\RequirePackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=linkcolor,
+  citecolor=linkcolor,
+}
+\RequirePackage[nameinlink,capitalize]{cleveref}
  
+% Algorithms
+%----------%
 %\RequirePackage{algorithmicx}
 \RequirePackage{algorithm}
-\RequirePackage[commentColor=blue]{algpseudocodex}
+\RequirePackage[endLComment=]{algpseudocodex}
+%\RequirePackage[commentColor=linkcolor]{algpseudocodex}
 
+% Tikz + Graphics
+%---------------%
 \RequirePackage{tikz}
 \RequirePackage{pgfplots} 
 \pgfplotsset{compat=1.17}
@@ -52,30 +140,8 @@ layers/standard/.define layer set={%
 }
 
 \RequirePackage{graphicx}
-\RequirePackage{csquotes}
-%\RequirePackage{caption}
+\RequirePackage[labelfont=bf]{caption}
 \RequirePackage{subcaption}
-
-\RequirePackage{booktabs}
-\RequirePackage{xspace}
-
-\RequirePackage[margin=1in]{geometry}
-
-%\RequirePackage{minitoc}
-\RequirePackage[linkcolor=blue,citecolor=blue,colorlinks=true,urlcolor=black]{hyperref}
-\RequirePackage[nameinlink,capitalize]{cleveref}
-
-\RequirePackage[
-  backend      = biber,
-  doi          = false,
-  giveninits   = true,
-  maxcitenames = 1,
-  maxbibnames  = 10,
-  isbn         = false,
-  url          = false,
-  style        = alphabetic, 
-  natbib       = true
-]{biblatex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Custom commands -- math symbols and math shortcuts
@@ -88,6 +154,8 @@ layers/standard/.define layer set={%
 \newcommand{\lrv}[1]{\left\langle #1 \right\rangle}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ceil}[1]{{\lceil {#1} \rceil}}
+\newcommand{\floor}[1]{{\lfloor {#1} \rfloor}}
 
 % Commonly-used sets
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
@@ -96,40 +164,108 @@ layers/standard/.define layer set={%
 \newcommand{\RR}{\ensuremath{\mathbb{R}}}
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
-
-% Complexity
-\newcommand{\grad}{\ensuremath{\nabla}}
-
-\newcommand{\bigo}[1]{\ensuremath{\operatorname{\mathcal{O}}\!\left(#1\right)}}
-\newcommand{\bigomega}[1]{\ensuremath{\Omega\!\left(#1\right)}}
-
-% Powerset 
 \newcommand{\powerset}{\ensuremath{\mathcal{P}}}
 
-% Vectors
-\newcommand{\vect}[1]{\ensuremath{\boldsymbol{#1}}}
+% Complexity
+\newcommand{\NP}{\ensuremath{\textsf{NP}}}
+\newcommand{\NPH}{\ensuremath{\textsf{NP-Hard}}}
+\newcommand{\NPC}{\ensuremath{\textsf{NP-Complete}}}
+\newcommand{\ksum}{\ensuremath{k\mathsf{-Sum}}}
+\newcommand{\eqcarpart}{\textsf{Equal Cardinality Partition}}
+\newcommand{\knapsack}{\textsf{Knapsack}}
+\newcommand{\subsetsum}{\textsf{Subset Sum}}
+
+\newcommand{\bigo}[1]{\ensuremath{\operatorname{\mathcal{O}}\!\lrp{#1}}}
+\newcommand{\bigomega}[1]{\ensuremath{\Omega\!lrp{#1}}}
+\newcommand{\polyreduce}{\ensuremath{\leq_p}}
+
+% More sets
+\newcommand{\nonneg}[1]{{\left[ {#1} \right]^+}}
+\def\sse{\subseteq}
+\def\sm{\setminus}
+\def\xbar{\bar{x}}
+\def\calZ{\mathcal{Z}}
+\def\calH{\mathcal{H}}
+\def\calV{\mathcal{V}}
+\def\calE{\mathcal{E}}
+\def\calQ{\mathcal{Q}}
+\def\calM{\mathcal{M}}
+\def\calN{\mathcal{N}}
+\def\calG{\mathcal{G}}
+\def\calR{\mathcal{R}}
+\def\calJ{\mathcal{J}}
+\def\calL{\mathcal{L}}
+\def\calP{\mathcal{P}}
+\def\calB{\mathcal{B}}
+\def\calA{\mathcal{A}}
+\def\calC{\mathcal{C}}
+\def\calX{\mathcal{X}}
+\def\calY{\mathcal{Y}}
+ 
+% Algorithms
+\newcommand{\Algin}{\Statex \textbf{Input:} }
+\newcommand{\Algout}{\Statex \textbf{Output:} }
+\newcommand{\Algreq}{\Statex \textbf{Require:} }
 
 % Misc
+\newcommand{\tempnote}[2]{$\ll${\bf #1: }{\it #2}$\gg$                        {\marginpar{\tiny{{\bf#1}}}}} %usage \tempnote{author}{note}
+\newcommand{\TODO}[1]{\textcolor{red}{{\bf TODO:} #1}}
+\newcommand{\cc}{\textcolor{red}{\bf [citation(s)]}}
+\newcommand{\email}[1]{\texttt{#1}}
+\newcommand{\func}[2]{\ensuremath{#1 \! \lrp{#2}}}
+
+\newcommand{\vect}[1]{\ensuremath{\boldsymbol{#1}}}
 \newcommand{\deriv}[2]{\ensuremath{\frac{d #1}{d #2}}}
 \newcommand{\pderiv}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 \newcommand{\pderivtwo}[2]{\ensuremath{\frac{\partial^2 #1}{\partial #2^2}}}
-\newcommand{\func}[2]{\ensuremath{#1\!\lrp{#2}}}
 \renewcommand{\bar}[1]{\overline{#1}}
-
-\NewDocumentCommand{\evalat}{sO{\big}mm}{%
-  \IfBooleanTF{#1}
-   {\mleft. #3 \mright|_{#4}}
-   {#3#2|_{#4}}%
-}
- 
- 
-\crefname{theorem}{Thm.}{Thms.}
-\crefname{corollary}{Cor.}{Cors.}
-\crefname{lemma}{Lem.}{Lems.}
-\crefname{problem}{Prob.}{Probs.}
-\crefname{table}{Table}{Table}
- 
-
 \newcommand{\cexpz}{\ensuremath{e^{2k_i \lrp{x + \alpha_1 z}}}}
 \newcommand{\cexpp}{\ensuremath{e^{2k_i \lrp{x + \alpha_1 \phi}}}}
 \newcommand{\vecu}{\vect{u}}
+\newcommand{\grad}{\ensuremath{\nabla}}
+
+% Theorem Styling
+\newcommand{\qedsym}{\hfill$\blacksquare$}
+
+\declaretheoremstyle[
+  bodyfont=\normalfont,
+  headpunct= ,
+]{problem}
+
+\declaretheoremstyle[
+  spacebelow=6pt,
+  notefont=\mdseries, notebraces={(}{)},
+  bodyfont=\normalfont
+]{def}
+
+\declaretheoremstyle[
+  spacebelow=6pt,
+  headfont=\itshape,
+  bodyfont=\normalfont,
+  notefont=\itshape, notebraces={}{},
+  qed=\qedsym
+]{proof}
+
+\declaretheorem[style=plain]{theorem, lemma, corollary, claim, conjecture, proposition, observation, remark}
+\declaretheorem[style=problem]{problem}
+\declaretheorem[style=def]{definition}
+
+\let\proof\relax 
+\declaretheorem[numbered=no, style=proof]{proof}
+
+% Cleverref
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{claim}{Claim}{Claims}
+\crefname{observation}{Observation}{Observations}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{conjecture}{Conjecture}{Conjectures}
+\crefname{remark}{Remark}{Remarks}
+\crefname{problem}{Problem}{Problems}
+\crefname{definition}{Definition}{Definitions}
+\crefname{algorithm}{Algorithm}{Algorithms}
+\crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+
+\endinput
